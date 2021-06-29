@@ -236,6 +236,8 @@ $locale = isset($locale) ? $locale : \Config\Services::request()->getLocale();
         </div>
     </div>
 
+
+
     <!-- Required Js -->
     <script>
         var langRemoveConfirmation = '<?php echo addcslashes(lang('Admin.tickets.removeConfirmation'), "'"); ?>';
@@ -253,7 +255,7 @@ $locale = isset($locale) ? $locale : \Config\Services::request()->getLocale();
         var langCancel = '<?php echo addcslashes(lang('Admin.form.cancel'), "'"); ?>';
     </script>
     <?php
-    echo script_tag('assets/components/jquery/jquery-3.6.0.min.js') .
+    echo script_tag('assets/components/jquery/jquery.min.js') .
         script_tag('assets/components/bootstrap/js/bootstrap.bundle.min.js') .
         script_tag('assets/admin/scripts/shards.min.js') .
         script_tag('assets/admin/scripts/shards-dashboards.1.1.0.js') .

@@ -192,7 +192,7 @@ $page_controller = isset($page_controller) ? $page_controller : '';
                     </button>
                 </div>
                 <div class="modal-body p-5">
-                    <img src="<?= base_url('assets/helpdeskz/images/info/biaya-datamikro-min.png') ?>" width="100%" />
+                    <img src="<?= base_url('assets/helpdeskz/images/info/biaya.png') ?>" width="100%" />
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
@@ -310,7 +310,7 @@ $page_controller = isset($page_controller) ? $page_controller : '';
     </div>
     <!-- Javascript -->
     <?php
-    echo script_tag('assets/components/jquery/jquery-3.6.0.min.js') .
+    echo script_tag('assets/components/jquery/jquery.min.js') .
         script_tag('assets/components/bootstrap/js/bootstrap.bundle.min.js') .
         script_tag('assets/components/select2/js/select2.min.js') .
         script_tag('assets/helpdeskz/js/helpdesk.js');

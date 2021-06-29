@@ -88,7 +88,7 @@ class UserAuth extends BaseController
                 );
                 $this->client->login($client_id);
                 $this->session->setFlashdata('form_success', lang('Client.users.accountCreated'));
-                return redirect()->route('view_tickets');
+                return redirect()->route('submit_ticket');
             }
         }
         return view('frontend/login', [

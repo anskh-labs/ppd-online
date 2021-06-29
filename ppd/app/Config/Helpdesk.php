@@ -32,7 +32,7 @@ class Helpdesk extends BaseConfig
     const DB_PORT = 3306;
 
     #URL of your helpdesk
-    const SITE_URL = 'http://ppd.test:8080';
+    const SITE_URL = 'http://localhost/ppd-online/';
 
     #Upload path for images used in HTML editor and logo
     const UPLOAD_PATH = FCPATH.'upload';

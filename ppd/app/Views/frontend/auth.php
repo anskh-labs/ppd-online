@@ -26,27 +26,27 @@ $this->section('content');
             <div class="carousel-inner">
                 <div class="carousel-item active">
                     <a href="<?= base_url('assets/helpdeskz/images/slider/silastik_permintaan_low.jpg') ?>">
-                        <img class="d-block w-100" src="<?= base_url('assets/helpdeskz/images/slider/silastik_permintaan_low.jpg') ?>" alt="slide-1">
+                        <img class="d-block w-100" src="<?= base_url('assets/helpdeskz/images/slider/1. Apa itu PPD-online.png') ?>" alt="slide-1">
                     </a>
                 </div>
                 <div class="carousel-item">
                     <a href="<?= base_url('assets/helpdeskz/images/slider/keuntungan_silastik_low.jpg') ?>">
-                        <img class="d-block w-100" src="<?= base_url('assets/helpdeskz/images/slider/keuntungan_silastik_low.jpg') ?>" alt="slide-2">
+                        <img class="d-block w-100" src="<?= base_url('assets/helpdeskz/images/slider/2. pelayanan di PPD-Online.png') ?>" alt="slide-2">
                     </a>
                 </div>
                 <div class="carousel-item">
                     <a href="<?= base_url('assets/helpdeskz/images/slider/layanan_permintaan_low.jpg') ?>">
-                        <img class="d-block w-100" src="<?= base_url('assets/helpdeskz/images/slider/layanan_permintaan_low.jpg') ?>" alt="slide-3">
+                        <img class="d-block w-100" src="<?= base_url('assets/helpdeskz/images/slider/3. alur konsultasi.png') ?>" alt="slide-3">
                     </a>
                 </div>
                 <div class="carousel-item">
                     <a href="<?= base_url('assets/helpdeskz/images/slider/alur_permintaan_low.jpg') ?>">
-                        <img class="d-block w-100" src="<?= base_url('assets/helpdeskz/images/slider/alur_permintaan_low.jpg') ?>" alt="slide-4">
+                        <img class="d-block w-100" src="<?= base_url('assets/helpdeskz/images/slider/4. alur permintaan.png') ?>" alt="slide-4">
                     </a>
                 </div>
                 <div class="carousel-item">
                     <a href="<?= base_url('assets/helpdeskz/images/slider/alur_konsultasi_low.jpg') ?>">
-                        <img class="d-block w-100" src="<?= base_url('assets/helpdeskz/images/slider/alur_konsultasi_low.jpg') ?>" alt="slide-5">
+                        <img class="d-block w-100" src="<?= base_url('assets/helpdeskz/images/slider/5. keuntungan.png') ?>" alt="slide-5">
                     </a>
                 </div>
             </div>

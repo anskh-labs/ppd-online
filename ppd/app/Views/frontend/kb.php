@@ -3,7 +3,7 @@
 /**
  * @var $this \CodeIgniter\View\View
  */
-$this->extend('frontend/template');
+$this->extend('frontend/page_template');
 
 $this->section('window_title');
 echo site_config('windows_title');
@@ -38,27 +38,15 @@ $this->section('breadcrumb');
 <?php
 $this->endSection();
 
-$this->section('content');
+$this->section('page_content');
 ?>
 <?php if ($category_id === 0) : ?>
     <h1 class="heading py-5"><?php echo lang('Client.kb.title'); ?></h1>
 <?php else : ?>
-    <div class="py-5">
-        <a class="inactive_link" href="<?php echo site_url(); ?>"><?php echo lang('Client.kb.title'); ?> &nbsp; /</a>
-        <?php
-        if ($parents = kb_parents($category->parent)) {
-            foreach ($parents as $item) {
-                echo ' &nbsp; <a class="inactive_link" href="' . site_url(route_to('category', $item->id, url_title($item->name))) . '">' . $item->name . ' &nbsp; /</a>';
-            }
-        }
-        echo ' &nbsp; <a class="static_link" href="' . site_url(route_to('category', $category->id, url_title($category->name))) . '">' . $category->name . '</a>';
-        ?>
-    </div>
     <h2 class="sub_heading mb-3"><?php echo $category->name ?></h2>
 <?php endif; ?>
-<div class="row">
-    <div class="col-lg-8">
-        <?php if ($categories = kb_categories($category_id)) : ?>
+
+<?php if ($categories = kb_categories($category_id)) : ?>
             <div class="row">
                 <?php foreach ($categories as $item) : ?>
                     <?php $total_articles = kb_count_articles($item->id); ?>
@@ -117,38 +105,5 @@ $this->section('content');
                 <?php endforeach; ?>
             </div>
         <?php endif; ?>
-    </div>
-
-
-    <div class="col">
-        <div class="pl-3 pt-3">
-            <?php if ($article_list = kb_popular()) : ?>
-                <div class="mb-5">
-                    <h4 class="mb-4"><?php echo lang('Client.kb.mostPopular'); ?></h4>
-                    <?php foreach ($article_list as $item) : ?>
-                        <div class="mb-3">
-                            <i class="fa fa-file-text-o kb_article_icon pr-3"></i>
-                            <a href="<?php echo site_url(route_to('article', $item->id, url_title($item->title))); ?>">
-                                <?php echo $item->title; ?>
-                            </a>
-                        </div>
-                    <?php endforeach; ?>
-                </div>
-            <?php endif; ?>
-
-            <?php if ($article_list = kb_newest()) : ?>
-                <h4 class="mb-4"><?php echo lang('Client.kb.newest'); ?></h4>
-                <?php foreach ($article_list as $item) : ?>
-                    <div class="mb-3">
-                        <i class="fa fa-file-text-o kb_article_icon pr-3"></i>
-                        <a href="<?php echo site_url(route_to('article', $item->id, url_title($item->title))); ?>">
-                            <?php echo $item->title; ?>
-                        </a>
-                    </div>
-                <?php endforeach; ?>
-            <?php endif; ?>
-        </div>
-    </div>
-</div>
 <?php
 $this->endSection();

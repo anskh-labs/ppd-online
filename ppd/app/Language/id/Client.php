@@ -3,11 +3,11 @@
 // override core en language system validation or define your own en language validation message
 return [
     'kb' => [
-        'title' => 'Informasi Dasar',
-        'menu' => 'Informasi dasar',
+        'title' => 'Katalog Informasi',
+        'menu' => 'Katalog Informasi',
         'howCanWeHelpYou1' => 'Selamat Datang di Pusat Permintaan Data ',
         'howCanWeHelpYou2' => 'BPS Kabupaten Rokan Hulu',
-        'search' => 'Cari dalam informasi dasar',
+        'search' => 'Cari dalam katalog informasi',
         'moreTopics' => 'Topik lainnya',
         'mostPopular' => 'Artikel terpopuler',
         'newest' => 'Artikel terbaru',

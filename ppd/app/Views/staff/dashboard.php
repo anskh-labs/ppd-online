@@ -5,8 +5,7 @@
  */
 $this->extend('staff/template');
 $this->section('css_block');
-    echo link_tag('https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css') .
-    link_tag('https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap4.min.css');
+    echo link_tag('https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap4.min.css');
 $this->endSection();
 $this->section('content');
 ?>
@@ -28,7 +27,7 @@ $this->section('content');
         </div>
     </div>
     <div class="container">
-        <div class="row">
+        <div class="row mt-3">
         <!-- dashboard card -->
             <div class="col-lg-3 col-6">            
                 <div class="small-box bg-info">
@@ -37,7 +36,7 @@ $this->section('content');
                     <p><?php echo lang('Admin.tickets.active'); ?></p>
                 </div>
                 <div class="icon">
-                    <i class="ion ion-flash"></i>
+                    <i class="fas fa-bolt"></i>
                 </div>
                 <a href="<?php echo site_url(route_to('staff_tickets'));?>" class="small-box-footer">Selengkapnya <i class="fas fa-arrow-circle-right"></i></a>
                 </div>
@@ -51,7 +50,7 @@ $this->section('content');
                     <p><?php echo lang('Admin.form.overdue'); ?></p>
                 </div>
                 <div class="icon">
-                    <i class="ion ion-clock"></i>
+                    <i class="fas fa-clock"></i>
                 </div>
                 <a href="<?php echo site_url(route_to('staff_tickets_overdue'));?>" class="small-box-footer">Selengkapnya <i class="fas fa-arrow-circle-right"></i></a>
                 </div>
@@ -65,7 +64,7 @@ $this->section('content');
                     <p><?php echo lang('Admin.form.answered'); ?></p>
                 </div>
                 <div class="icon">
-                    <i class="ion ion-checkmark-circled"></i>
+                    <i class="fas fa-check-circle"></i>
                 </div>
                 <a href="<?php echo site_url(route_to('staff_tickets_answered'));?>" class="small-box-footer">Selengkapnya <i class="fas fa-arrow-circle-right"></i></a>
                 </div>
@@ -79,7 +78,7 @@ $this->section('content');
                     <p><?php echo lang('Admin.form.closed'); ?></p>
                 </div>
                 <div class="icon">
-                    <i class="ion ion-stop"></i>
+                    <i class="fas fa-times-circle"></i>
                 </div>
                 <a href="<?php echo site_url(route_to('staff_tickets_closed'));?>" class="small-box-footer">Selengkapnya <i class="fas fa-arrow-circle-right"></i></a>
                 </div>
@@ -228,10 +227,7 @@ $this->section('content');
 <?php
 $this->endSection();
 $this->section('script_block');
-echo script_tag('assets/admins/scripts/adminlte.min.js').
-    script_tag('assets/admins/scripts/demo.js').
-    script_tag('assets/admins/scripts/Chart.min.js').
-    script_tag('https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js');
+echo script_tag('https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js');
     script_tag('https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap4.min.js');
 ?>
     <script>
@@ -244,11 +240,7 @@ echo script_tag('assets/admins/scripts/adminlte.min.js').
 
     Highcharts.chart('diagram1', {
     chart: {
-        type: 'column',
-        loading: {
-            hideDuration: 1000,
-            showDuration: 1000
-        }
+        type: 'column'
     },
     title: {
         text: null
