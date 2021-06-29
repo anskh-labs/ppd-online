@@ -121,7 +121,7 @@ class Staff
         $ip_address = is_null($ip_address) ? $request->getIPAddress() : $ip_address;
         $builder = $db->table('login_attempt');
         $builder->delete([
-                'date' => time()-(60*$settings->config('login_attempt_minutes'))
+                'date <' => time()-(60*$settings->config('login_attempt_minutes'))
             ]);
         //Verify
         $q = $builder->select('attempts, date')
