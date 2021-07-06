@@ -94,15 +94,15 @@ $locale = isset($locale) ? $locale : \Config\Services::request()->getLocale();
                             </a>
                         </li>
 
-                        <li class="nav-item">
+                        <?php
+                        if (staff_data('admin') == 1) {
+                        ?>
+                            <li class="nav-item">
                             <a class="nav-link <?php echo (uri_page_staff() == 'users' ? 'active' : ''); ?>" href="<?php echo site_url(route_to('staff_users')); ?>">
                                 <i class="fas fa-users"></i>
                                 <span><?php echo lang('Admin.users.menu'); ?></span>
                             </a>
                         </li>
-                        <?php
-                        if (staff_data('admin') == 1) {
-                        ?>
                             <li class="nav-item">
                                 <a class="nav-link <?php echo (uri_page_staff() == 'categories' ? 'active' : ''); ?>" href="<?php echo site_url(route_to('staff_categories')); ?>">
                                     <i class="fas fa-project-diagram"></i>

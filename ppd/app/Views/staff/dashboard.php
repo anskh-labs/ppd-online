@@ -5,7 +5,7 @@
  */
 $this->extend('staff/template');
 $this->section('css_block');
-    echo link_tag('https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap4.min.css');
+    echo link_tag('assets/components/datatables/css/dataTables.bootstrap4.min.css');
 $this->endSection();
 $this->section('content');
 ?>
@@ -227,8 +227,8 @@ $this->section('content');
 <?php
 $this->endSection();
 $this->section('script_block');
-echo script_tag('https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js');
-    script_tag('https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap4.min.js');
+echo script_tag('assets/components/datatables/js/jquery.dataTables.min.js').
+    script_tag('assets/components/datatables/js/dataTables.bootstrap4.min.js');
 ?>
     <script>
     // script grafik kategori permintaan data        
