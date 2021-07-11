@@ -1,5 +1,4 @@
 composer.phar
-vendor/
 upload/
 db_upgrade_1.1.sql
 
