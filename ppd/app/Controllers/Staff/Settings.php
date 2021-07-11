@@ -131,18 +131,6 @@ class Settings extends BaseController
 
         if($this->request->getPost('do') == 'submit'){
             $validation = Services::validation();
-            $validation->setRule('recaptcha','reCAPTCHA status','required|in_list[0,1]',[
-                'required' => lang('Admin.error.selectCaptchaStatus'),
-                'in_list' => lang('Admin.error.selectCaptchaStatus'),
-            ]);
-            if($this->request->getPost('recaptcha') == 1){
-                $validation->setRule('recaptcha_sitekey','reCAPTCHA site key','required',[
-                    'required' => lang('Admin.error.enterSiteKey'),
-                ]);
-                $validation->setRule('recaptcha_privatekey','reCAPTCHA private key','required',[
-                    'required' => lang('Admin.error.enterPrivateKey'),
-                ]);
-            }
             $validation->setRule('login_attempt','Maximum number of login attempts','required|is_natural_no_zero',[
                 'required' => lang('Admin.error.enterMaxAttempts'),
                 'is_natural_no_zero' => lang('Admin.error.enterMaxAttempts')
@@ -155,10 +143,7 @@ class Settings extends BaseController
             if($validation->withRequest($this->request)->run() == false){
                 $error_msg = $validation->listErrors();
             }else{
-                $this->settings->save([
-                    'recaptcha' => $this->request->getPost('recaptcha'),
-                    'recaptcha_sitekey' => esc($this->request->getPost('recaptcha_sitekey')),
-                    'recaptcha_privatekey' => esc($this->request->getPost('recaptcha_privatekey')),
+                $this->settings->save([ 
                     'login_attempt' => $this->request->getPost('login_attempt'),
                     'login_attempt_minutes' => $this->request->getPost('login_attempt_minutes'),
                 ]);

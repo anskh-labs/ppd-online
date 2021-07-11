@@ -106,23 +106,6 @@ $routes->add('{locale}/account/logout', 'UserAuth::logout',[
     'as' => 'logout',
     'filter' => 'userAuth:user'
 ]);
-#Imap
-$routes->add('{locale}/imap_fetcher', 'MailFetcher::imap');
-#Pipe
-$routes->add('{locale}/mail_pipe', 'MailFetcher::pipe');
-#Install
-$routes->add('{locale}/install', 'Install::home',[
-    'as' => 'install_home'
-]);
-$routes->add('{locale}/install/install-wizard', 'Install::install',[
-    'as' => 'install_wizard'
-]);
-$routes->add('{locale}/install/install-wizard/success', 'Install::installComplete',[
-    'as' => 'install_complete'
-]);
-$routes->add('{locale}/install/upgrade-wizard', 'Install::upgrade',[
-    'as' => 'upgrade_wizard'
-]);
 #Staff
 $routes->group('{locale}/'.Helpdesk::STAFF_URI, [
     'filter' => 'staffAuth'
@@ -260,15 +243,6 @@ $routes->group('{locale}/'.Helpdesk::STAFF_URI, [
     ]);
     $routes->add('account/profile','Staff\Auth::profile',[
         'as' => 'staff_profile'
-    ]);
-    $routes->add('tools/custom-fields','Staff\Tools::customFields',[
-        'as' => 'staff_custom_fields'
-    ]);
-    $routes->add('tools/custom-fields/new','Staff\Tools::customFieldsCreate',[
-        'as' => 'staff_new_custom_field'
-    ]);
-    $routes->add('tools/custom-fields/edit/(:num)', 'Staff\Tools::customFieldsEdit/$1',[
-        'as' => 'staff_edit_custom_field'
     ]);
     $routes->add('calendar', 'Staff\Calendar::manage',[
         'as' => 'staff_calendar'

@@ -29,33 +29,6 @@ if(isset($success_msg)){
             echo form_open('',[],['do' => 'submit']);
             ?>
             <div class="form-group">
-                <label><?php echo lang('Admin.settings.recaptchaStatus');?></label>
-                <select name="recaptcha" class="form-control custom-select" id="recaptcha">
-                    <?php
-                    $default = set_value('recaptcha', site_config('recaptcha'));
-                    foreach ([0=>'Disable',1=>'Enable'] as $k => $v){
-                        if($default == $k){
-                            echo '<option value="'.$k.'" selected>'.$v.'</option>';
-                        }else{
-                            echo '<option value="'.$k.'">'.$v.'</option>';
-                        }
-                    }
-                    ?>
-                </select>
-            </div>
-            <div id="recaptcha_details">
-                <div class="form-group">
-                    <label><?php echo lang('Admin.settings.siteKey');?></label>
-                    <input type="text" name="recaptcha_sitekey" class="form-control" value="<?php echo set_value('recaptcha_sitekey', site_config('recaptcha_sitekey'));?>">
-                </div>
-                <div class="form-group">
-                    <label><?php echo lang('Admin.settings.privateKey');?></label>
-                    <input type="text" name="recaptcha_privatekey" class="form-control" value="<?php echo set_value('recaptcha_privatekey', site_config('recaptcha_privatekey'));?>">
-                </div>
-            </div>
-
-
-            <div class="form-group">
                 <label><?php echo lang('Admin.settings.maxLoginAttempts');?></label>
                 <input type="number" step="1" min="1" name="login_attempt" class="form-control" value="<?php echo set_value('login_attempt', site_config('login_attempt'));?>">
             </div>
@@ -73,23 +46,4 @@ if(isset($success_msg)){
     </div>
 <?php
 $this->endSection();
-$this->section('script_block');
 ?>
-<script>
-    $(function (){
-        recaptcha_status();
-        $('#recaptcha').on('change', function(){
-            recaptcha_status();
-        });
-    })
-    function recaptcha_status()
-    {
-        if($('#recaptcha').val() === '1'){
-            $('#recaptcha_details').show();
-        }else{
-            $('#recaptcha_details').hide();
-        }
-    }
-</script>
-<?php
-$this->endSection();

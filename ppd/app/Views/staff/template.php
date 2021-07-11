@@ -127,15 +127,6 @@ $locale = isset($locale) ? $locale : \Config\Services::request()->getLocale();
                                     <span><?php echo lang('Admin.cal.menu'); ?></span>
                                 </a>
                             </li>
-                            <li class="nav-item dropdown <?php echo (uri_page_staff() == 'tools' ? 'show' : ''); ?>">
-                                <a class="nav-link dropdown-toggle <?php echo (uri_page_staff() == 'tools' ? 'active' : ''); ?>" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="true">
-                                    <i class="fa fa-tools"></i>
-                                    <span><?php echo lang('Admin.tools.menu'); ?></span>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-small <?php echo (uri_page_staff() == 'tools' ? 'show' : ''); ?>">
-                                    <a class="dropdown-item <?php echo strpos(uri_string(), 'tools/custom-fields') !== false ? 'active' : ''; ?>" href="<?php echo site_url(route_to('staff_custom_fields')); ?>"><?php echo lang('Admin.tools.customFields'); ?></a>
-                                </div>
-                            </li>
                             <li class="nav-item dropdown <?php echo (uri_page_staff() == 'setup' ? 'show' : ''); ?>">
                                 <a class="nav-link dropdown-toggle <?php echo (uri_page_staff() == 'setup' ? 'active' : ''); ?>" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="true">
                                     <i class="fa fa-cogs"></i>
@@ -247,7 +238,6 @@ $locale = isset($locale) ? $locale : \Config\Services::request()->getLocale();
         var langKbArticleConfirmation = '<?php echo addcslashes(lang('Admin.kb.removeArticleConfirmation'), "'"); ?>';
         var langAgentsConfirmation = '<?php echo addcslashes(lang('Admin.agents.removeConfirmation'), "'"); ?>';
         var langEmailConfirmation = '<?php echo addcslashes(lang('Admin.settings.emailDeletionConfirm'), "'"); ?>';
-        var langCustomFieldConfirmation = '<?php echo addcslashes(lang('Admin.tools.customFieldConfirm'), "'"); ?>';
         var langUserConfirmation = '<?php echo addcslashes(lang('Admin.users.removeUserConfirmation'), "'"); ?>';
         var langNoteConfirmation = '<?php echo addcslashes(lang('Admin.tickets.notesRemoveConfirmation'), "'"); ?>';
 

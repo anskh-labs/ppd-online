@@ -78,7 +78,7 @@ class Messages extends ResourceController
         $ticket = $tickets->getTicket(['id' => $this->request->getPost('ticket_id')]);
         //message
         $staff_id = $this->request->getPost('replier') == 'staff' ? $this->request->getPost('staff_id') : 0;
-        $message = $tickets->purifyHTML($this->request->getPost('message'));
+        $message = $tickets->($this->request->getPost('message'));
         $message_id = $tickets->addMessage($ticket->id, $message, $staff_id, false);
         $tickets->updateTicketReply($ticket->id, $ticket->status, ($staff_id > 0 ? true : false));
         if (isset($files)) {

@@ -310,12 +310,6 @@ function getCategories($onlyPublic = true)
         : \Config\Services::categories()->getAll();
 }
 
-function parseCustomFieldsForm($customField)
-{
-    $customFields = new \App\Libraries\CustomFields();
-    return $customFields->parseForm($customField);
-}
-
 /*
  * -----------------------------------------
  * Encode/Decode data

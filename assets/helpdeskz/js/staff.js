@@ -237,25 +237,6 @@ function setEmailDefault(email_id) {
     $('#emailForm').submit();
 }
 
-function removeCustomField(msgID) {
-    Swal.fire({
-        text: langCustomFieldConfirmation,
-        type: 'warning',
-        showCancelButton: true,
-        confirmButtonText: langDelete,
-        cancelButtonText: langCancel,
-        cancelButtonColor: '#d33',
-    }).then((result) => {
-        if (result.value) {
-            $("#field_id").val(msgID);
-            $('#manageForm').submit();
-        } else if (result.dismiss === Swal.DismissReason.cancel) {
-            $('#field_id').val('');
-            return false;
-        }
-    });
-}
-
 function removeUser(msgID) {
     Swal.fire({
         text: langUserConfirmation,

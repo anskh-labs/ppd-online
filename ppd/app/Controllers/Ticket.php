@@ -9,7 +9,6 @@
 namespace App\Controllers;
 
 
-use App\Libraries\reCAPTCHA;
 use App\Libraries\Tickets;
 use Config\Services;
 
@@ -73,35 +72,6 @@ class Ticket extends BaseController
                 ]);
             }
 
-            $customFieldList = array();
-            if($customFields = $tickets->customFieldsFromTopic($topic->id)){
-                foreach ($customFields as $customField){
-                    $value = '';
-                    if(in_array($customField->type, ['text','textarea','password','email','date'])){
-                        $value = $this->request->getPost('custom')[$customField->id];
-                    }elseif(in_array($customField->type, ['radio','select'])){
-                        $options = explode("\n", $customField->value);
-                        $value = $options[$this->request->getPost('custom')[$customField->id]];
-                    }elseif ($customField->type == 'checkbox'){
-                        $options = explode("\n", $customField->value);
-                        $checkbox_list = array();
-                        if(is_array($this->request->getPost('custom')[$customField->id])){
-                            foreach ($this->request->getPost('custom')[$customField->id] as $k){
-                                $checkbox_list[] = $options[$k];
-                            }
-                            $value = implode(', ',$checkbox_list);
-                        }
-                    }
-                    $customFieldList[] = [
-                        'title' => $customField->title,
-                        'value' => $value
-                    ];
-                    if($customField->required == '1'){
-                        $validation->setRule('custom.'.$customField->id, $customField->title, 'required');
-                    }
-                }
-            }
-
            if($validation->withRequest($this->request)->run() == false){
                 $error_msg = $validation->listErrors();
             }else{
@@ -117,10 +87,6 @@ class Ticket extends BaseController
                 }
 
                 $ticket_id = $tickets->createTicket($client_id, $this->request->getPost('subject'), $topic->id);
-                //Custom field
-                $tickets->updateTicket([
-                    'custom_vars' => serialize($customFieldList)
-                ], $ticket_id);
 
                 //Message
                 $message_id = $tickets->addMessage($ticket_id, nl2br(esc($this->request->getPost('message'))), 0);
@@ -144,8 +110,7 @@ class Ticket extends BaseController
             'locale' => $this->locale,
             'error_msg' => isset($error_msg) ? $error_msg : null,
             'topic' => $topic,
-            'validation' => $validation,
-            'customFields' => $tickets->customFieldsFromTopic($topic->id)
+            'validation' => $validation
         ]);
     }
 

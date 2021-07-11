@@ -71,13 +71,6 @@ $this->section('content');
             </label>
             <input type="text" value="<?php echo $topic->name; ?>" class="form-control" readonly>
         </div>
-        <?php
-        if (isset($customFields)) {
-            foreach ($customFields as $customField) {
-                echo parseCustomFieldsForm($customField);
-            }
-        }
-        ?>
         <h3 class="mt-5 mb-3" style="font-weight: 300"><?php echo lang('Client.form.yourMessage'); ?></h3>
         <div class="form-group">
             <label class="<?php echo ($validation->hasError('subject') ? 'text-danger' : ''); ?>">

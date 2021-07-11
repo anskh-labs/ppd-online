@@ -515,14 +515,13 @@ class Tickets extends BaseController
             return redirect()->route('staff_tickets');
         }
         $tickets = Services::tickets();
-        $ticket = $tickets->getTickett();
-        $custom_vars = $ticket;
-        $arai = array();
-        foreach ($custom_vars as $a) {
+        $ticketCat = $tickets->getTickett();
+        $arai = [];
+        foreach ($ticketCat as $a) {
             array_push($arai, $a->name);
         }
         $ticket_done = $tickets->getStatuss();
-        $arai1 = array();
+        $arai1 = [];
         foreach ($ticket_done as $b) {
             array_push($arai1, $b->name);
         }

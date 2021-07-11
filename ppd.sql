@@ -131,9 +131,6 @@ CREATE TABLE `ppd_config` (
   `timezone` varchar(100) DEFAULT NULL,
   `maintenance` tinyint(1) NOT NULL DEFAULT 0,
   `maintenance_message` text DEFAULT NULL,
-  `recaptcha` tinyint(1) NOT NULL DEFAULT 0,
-  `recaptcha_sitekey` varchar(255) DEFAULT NULL,
-  `recaptcha_privatekey` varchar(255) DEFAULT NULL,
   `login_attempt` int(11) NOT NULL DEFAULT 0,
   `login_attempt_minutes` int(11) NOT NULL DEFAULT 1,
   `reply_order` enum('asc','desc') NOT NULL DEFAULT 'asc',
@@ -154,24 +151,6 @@ CREATE TABLE `ppd_config` (
   `kb_file_size` double NOT NULL DEFAULT 2,
   `kb_file_type` mediumtext DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `ppd_custom_fields`
---
-
-CREATE TABLE `ppd_custom_fields` (
-  `id` int(11) NOT NULL,
-  `type` varchar(100) NOT NULL,
-  `topics` mediumtext DEFAULT NULL,
-  `title` varchar(255) NOT NULL,
-  `value` text DEFAULT NULL,
-  `required` tinyint(1) NOT NULL DEFAULT 0,
-  `display` int(11) NOT NULL DEFAULT 1
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
 
 --
 -- Table structure for table `ppd_emails`
@@ -319,7 +298,8 @@ CREATE TABLE `ppd_tickets` (
   `staff_id` int(11) NOT NULL DEFAULT 0,
   `replies` int(11) NOT NULL DEFAULT 0,
   `last_replier` tinyint(1) DEFAULT 0,
-  `custom_vars` mediumtext DEFAULT NULL
+  `start_update` int(11) NOT NULL DEFAULT 0,
+  `end_update` int(11) NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -433,12 +413,6 @@ ALTER TABLE `ppd_category`
 -- Indexes for table `ppd_config`
 --
 ALTER TABLE `ppd_config`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `ppd_custom_fields`
---
-ALTER TABLE `ppd_custom_fields`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -557,12 +531,6 @@ ALTER TABLE `ppd_category`
 -- AUTO_INCREMENT for table `ppd_config`
 --
 ALTER TABLE `ppd_config`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `ppd_custom_fields`
---
-ALTER TABLE `ppd_custom_fields`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
