@@ -20,7 +20,7 @@ $pager->setSurroundCount(2);
 					<span aria-hidden="true"><?= lang('Pager.previous') ?></span>
 				</a>
 			</li>
-		<?php endif ?>
+		<?php endif; ?>
 
 		<?php foreach ($pager->links() as $link) : ?>
 			<li  class="page-item <?= $link['active'] ? 'current' : '' ?>">
@@ -41,6 +41,6 @@ $pager->setSurroundCount(2);
 					<span aria-hidden="true"><?= lang('Pager.last') ?></span>
 				</a>
 			</li>
-		<?php endif ?>
+		<?php endif; ?>
 	</ul>
 </div>

@@ -219,7 +219,7 @@ $this->section('content');
                                 by <?php echo $note->fullname; ?>
                                 <small>&raquo; <?php echo dateFormat($note->date); ?></small>
                                 <?php
-                                if (staff_data('admin') == 1 || staff_data('id') == $note->staff_id) {
+                                if (staff_data('roleName') == 'admin' || staff_data('id') == $note->staff_id) {
                                 ?>
                                     <div class="float-right">
                                         <?php echo form_open('', ['id' => 'noteForm' . $item->id], ['do' => 'delete_note', 'note_id' => $note->id]); ?>

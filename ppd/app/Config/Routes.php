@@ -184,14 +184,32 @@ $routes->group('{locale}/'.Helpdesk::STAFF_URI, [
     $routes->add('kb/article/edit/(:num)','Staff\Kb::editArticle/$1',[
         'as' => 'staff_kb_edit_article'
     ]);
-    $routes->add('agents','Staff\Agents::manage',[
+    $routes->add('agents/agents','Staff\Agents::manage',[
        'as' => 'staff_agents'
     ]);
-    $routes->add('agents/edit/(:num)','Staff\Agents::edit/$1',[
+    $routes->add('agents/agents/edit/(:num)','Staff\Agents::edit/$1',[
         'as' => 'staff_agents_edit'
     ]);
-    $routes->add('agents/new','Staff\Agents::create',[
+    $routes->add('agents/agents/new','Staff\Agents::create',[
         'as' => 'staff_agents_new'
+    ]);
+    $routes->add('agents/roles','Staff\Agents::roles',[
+        'as' => 'staff_agents_roles'
+     ]);
+     $routes->add('agents/roles/new','Staff\Agents::newRole',[
+        'as' => 'staff_agents_roles_new'
+     ]);
+     $routes->add('agents/roles/edit/(:num)','Staff\Agents::editRole/$1',[
+        'as' => 'staff_agents_roles_edit'
+     ]);
+     $routes->add('attachments','Staff\Attachments::manage',[
+        'as' => 'staff_attachments'
+    ]);
+    $routes->add('attachments/edit/(:num)','Staff\Attachments::edit/$1',[
+        'as' => 'staff_attachments_edit'
+    ]);
+    $routes->add('attachments/new','Staff\Attachments::create',[
+        'as' => 'staff_attachments_new'
     ]);
     $routes->add('users','Staff\Users::manage',[
         'as' => 'staff_users'

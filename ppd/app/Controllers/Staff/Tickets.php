@@ -22,6 +22,7 @@ class Tickets extends BaseController
         $tickets = new \App\Libraries\Tickets();
         $topics = new \App\Libraries\Topics();
         $categories = new \App\Libraries\Categories();
+
         if ($this->request->getPost('action')) {
             if (!is_array($this->request->getPost('ticket_id'))) {
                 $error_msg = lang('Admin.error.noItemsSelected');
@@ -78,7 +79,7 @@ class Tickets extends BaseController
         $result = $tickets->staffTickets($page);
         return view('staff/tickets', [
             'locale' => $this->locale,
-            'agent_list' => $this->staff->getStaff(),
+            'agent_list' => $this->staff->getOperator(),
             'statuses' => $tickets->statusList(),
             'tickets_result' => $result['result'],
             'priorities' => $tickets->getPriorities(),
@@ -101,7 +102,7 @@ class Tickets extends BaseController
             $this->session->setFlashdata('ticket_error', lang('Admin.error.ticketNotFound'));
             return redirect()->route('staff_tickets');
         }
-        if ($this->staff->getData('admin') != 1) {
+        if ($this->staff->getData('roleName') != 'supervisor' && $this->staff->getData('roleName') != 'admin') {
             if ($ticket->staff_id !== $this->staff->getData('id')) {
                 $this->session->setFlashdata('ticket_error', lang('Admin.error.ticketNotPermission'));
                 return redirect()->route('staff_tickets');
@@ -207,7 +208,7 @@ class Tickets extends BaseController
                     }
                 }
                 //Message
-                $message = $this->request->getPost('message') . $this->staff->getData('signature');
+                $message = $this->request->getPost('message');
                 $message_id = $tickets->addMessage($ticket->id, $message, $this->staff->getData('id'));
 
                 //File
@@ -227,7 +228,7 @@ class Tickets extends BaseController
                 $error_msg = lang('Admin.tickets.invalidRequest');
             } elseif (!$note = $tickets->getNote($this->request->getPost('note_id'))) {
                 $error_msg = lang('Admin.tickets.invalidRequest');
-            } elseif ($this->staff->getData('admin') == 1 || $this->staff->getData('id') == $note->staff_id) {
+            } elseif ($this->staff->getData('roleName') == 'admin' || $this->staff->getData('roleName') == 'supervisor'|| $this->staff->getData('id') == $note->staff_id) {
                 $tickets->deleteNote($ticket->id, $this->request->getPost('note_id'));
                 $this->session->setFlashdata('ticket_update', lang('Admin.tickets.noteRemoved'));
                 return redirect()->to(current_url());
@@ -243,7 +244,7 @@ class Tickets extends BaseController
                 $error_msg = lang('Admin.tickets.enterNote');
             } elseif (!$note = $tickets->getNote($this->request->getPost('note_id'))) {
                 $error_msg = lang('Admin.tickets.invalidRequest');
-            } elseif ($this->staff->getData('admin') == 1 || $this->staff->getData('id') == $note->staff_id) {
+            } elseif ($this->staff->getData('roleName') == 'admin' || $this->staff->getData('roleName') == 'supervisor' || $this->staff->getData('id') == $note->staff_id) {
                 $tickets->updateNote($this->request->getPost('new_note'), $note->id);
                 $this->session->setFlashdata('ticket_update', lang('Admin.tickets.noteUpdated'));
                 return redirect()->to(current_url());
@@ -278,7 +279,7 @@ class Tickets extends BaseController
             'ticket_statuses' => $tickets->statusList(),
             'ticket_priorities' => $tickets->getPriorities(),
             'kb_selector' => Services::kb()->kb_article_selector(),
-            'agent_list' => $this->staff->getStaff(),
+            'agent_list' => $this->staff->getOperator(),
             'cat_list' => Services::categories()->publicCategories(),
             'topic_list' => Services::topics()->publicTopics(),
             'notes' => $tickets->getNotes($ticket->id)
@@ -345,7 +346,7 @@ class Tickets extends BaseController
                 }
                 $client_id = $this->client->getClientID($this->request->getPost('email'));
                 $ticket_id = $tickets->createTicket($client_id, $this->request->getPost('subject'), $this->request->getPost('topic'), $this->request->getPost('priority'));
-                $message = $this->request->getPost('message') . $this->staff->getData('signature');
+                $message = $this->request->getPost('message');
                 $message_id = $tickets->addMessage($ticket_id, $message, $this->staff->getData('id'));
                 $tickets->updateTicket([
                     'last_replier' => $this->staff->getData('id'),
@@ -382,7 +383,7 @@ class Tickets extends BaseController
         if ($this->request->getPost('do') == 'remove') {
             if (!$canned = $tickets->getCannedResponse($this->request->getPost('msgID'))) {
                 $error_msg = lang('Admin.error.invalidCannedResponse');
-            } elseif (!$this->staff->getData('admin') && $canned->staff_id != $this->staff->getData('id')) {
+            } elseif (($this->staff->getData('roleName') != 'admin' || $this->staff->getData('roleName') != 'supervisor') && $canned->staff_id != $this->staff->getData('id')) {
                 $error_msg = lang('Admin.error.invalidCannedResponse');
             } else {
                 $tickets->deleteCanned($canned->id);
@@ -424,12 +425,14 @@ class Tickets extends BaseController
         if ($this->session->has('canned_update')) {
             $success_msg = $this->session->getFlashdata('canned_update');
         }
+        $data = $tickets->getCannedAll();
         return view('staff/canned_manage', [
             'locale' => $this->locale,
-            'cannedList' => $tickets->getCannedList(),
+            'cannedList' => $data['canned_list'],
             'lastCannedPosition' => $tickets->lastCannedPosition(),
             'error_msg' => isset($error_msg) ? $error_msg : null,
-            'success_msg' => isset($success_msg) ? $success_msg : null
+            'success_msg' => isset($success_msg) ? $success_msg : null,
+            'pager' => $data['pager']
         ]);
     }
 
@@ -511,9 +514,6 @@ class Tickets extends BaseController
 
     public function dashboard()
     {
-        if ($this->staff->getData('admin') != 1) {
-            return redirect()->route('staff_tickets');
-        }
         $tickets = Services::tickets();
         $ticketCat = $tickets->getTickett();
         $arai = [];

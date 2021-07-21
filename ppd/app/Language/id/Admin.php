@@ -55,7 +55,7 @@ return [
         'new' => 'Tanggapan otomatis baru'
     ],
     'kb' => [
-        'menu' => 'Informasi Dasar',
+        'menu' => 'Artikel Pengetahuan',
         'articles' => 'Artikel',
         'newArticle' => 'Artikel baru',
         'article' => 'Artikel',
@@ -124,8 +124,20 @@ return [
         'new' => 'Agen baru',
         'informationUpdated' => 'Informasi agen telah diperbaharui.',
         'removeConfirmation' => 'Anda yakin ingin menghapus agen ini?',
+        'removeRoleConfirmation' => 'Anda yakin ingin menghapus hak akses ini?',
         'agentCreated' => 'Agen baru telah dibuat.',
-        'assignedDepartments' => 'Departemen yang ditugaskan'
+        'assignedDepartments' => 'Departemen yang ditugaskan',
+        'roles'=>'Hak Akses',
+        'manage'=>'Kelola',
+        'rolesName'=>'Nama Hak Akses',
+        'rolesNew'=>'Hak akses baru',
+        'rolesCreated' => 'Hak akses baru telah dibuat',
+        'rolesEdit' => 'Ubah hak akses',
+        'rolesMenu' => 'Hak akses',
+        'informationRoleUpdated' => 'Informasi hak akses telah diperbaharui',
+        'rolesAccess' => 'Hak Akses',
+        'agentRemoved' => 'Agen telah dihapus',
+        'roleRemoved' => 'Hak akses telah dihapus'
     ],
     'settings' => [
         'menu' => 'Setup',
@@ -209,6 +221,19 @@ return [
         'notifyNewAccount' => 'Kirimkan email ke pengguna dengan informasi akun',
         'accountCreated' => 'Akun pengguna telah dibuat.',
         'accountUpdated' => 'Akun pengguna telah diperbaharui.'
+    ],
+    'attachments' => [
+        'menu' => 'Berkas Lampiran',
+        'newFile' => 'Lampiran Baru',
+        'name' => 'Nama',
+        'type' => 'Tipe',
+        'size' => 'Ukuran',
+        'article' => 'Id Artikel',
+        'ticket' => 'Id Tiket',
+        'message' => 'Id Pesan',
+        'attachments' => 'Berkas Lampiran',
+        'editFile' => 'Ubah',
+        'removeFile' => 'Hapus'
     ],
     'form' => [
         'username' => 'Nama pengguna',
@@ -295,7 +320,6 @@ return [
         'edit' => 'Ubah',
         'emailName' => 'Nama email',
         'none' => 'None',
-        'signature' => 'Tanda tangan',
         'newPassword' => 'Kata sandi baru',
         'existingPassword' => 'Kata sandi eksisting',
         'confirm' => 'Konfirmasi',
@@ -310,7 +334,8 @@ return [
         'location' => 'Domisili',
         'rokanhulu' => 'Kabupaten Rokan Hulu',
         'other' => 'Lainnya',
-        'date' => 'Tanggal kalender'
+        'date' => 'Tanggal kalender',
+        'role' => 'Hak akses'
     ],
     'error' => [
         'recordsNotFound' => 'Record tidak ditemukan.',
@@ -365,24 +390,10 @@ return [
         'wrongExistingPassword' => 'Kata sandi Anda saat ini salah.',
         'passwordTooShort' => 'Panjang kata sandi baru minimal harus 6 karakter.',
         'selectTopic' => 'Pilih topik.',
-        'topicNotExist' => 'Topik yang dipilih tidak ada.'
-    ],
-    'twoFactor' => [
-        'title' => 'Otentikasi Dua Faktor',
-        'info' => 'Lindungi akun Anda dengan login keamanan tinggi.',
-        'downloadApp' => ' Unduh aplikasi untuk android atau %1%iPhone%0% dan %2%iPad%0%',
-        'secretKey' => 'Secret Key',
-        'verificationCode' => 'Kode verifikasi',
-        'enter2FA' => 'Masukkan 6 digit dari Aplikasi seluler Anda.',
-        'backupCode' => 'Simpan kode ini!',
-        'activate' => 'Aktifkan Otentikasi Dua Faktor',
-        'deactivate' => 'Nonaktifkan Otentikasi Dua Faktor',
-        'activated' => 'Otentikasi Dua Faktor telah diaktifkan.',
-        'deactivated' => 'Otentikasi dua faktor telah dinonaktifkan.',
-        'error' => [
-            'isActive' => 'Otentikasi dua faktor sudah aktif.',
-            'invalidCode' => 'Kode verifikasi tidak valid.',
-            'invalidPassword' => 'Kata sandi salah.'
-        ]
+        'topicNotExist' => 'Topik yang dipilih tidak ada.',
+        'enterRoleName' => 'Isikan nama hak akses',
+        'roleNameTaken' => 'Nama hak akses telah digunakan',
+        'enterValidRoleName' => 'Isikan nama hak akses yang valid',
+        'enterRoleAccess' => 'Masukan nama akses'
     ]
 ];

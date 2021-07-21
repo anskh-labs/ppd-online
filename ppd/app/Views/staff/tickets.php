@@ -182,7 +182,7 @@ echo form_input([
                     <th><?php echo sort_link('topic',lang('Admin.form.topic'));?></th>
                     <th><?php echo sort_link('category',lang('Admin.form.category'));?></th>
                     <th><?php echo sort_link('priority',lang('Admin.form.priority'));?></th>
-                    <?php if(staff_data('admin')==1) {
+                    <?php if(staff_data('role_name')=='admin' || staff_data('role_name')=='supervisor') {
                     ?>                    
                     <th><?php echo sort_link('assignTo',lang('Admin.form.assignTo'));?></th>
                     <?php
@@ -211,21 +211,21 @@ echo form_input([
                                 <div class="font-weight-bold">
                                     <a href="<?php echo site_url(route_to('staff_ticket_view', $item->id));?>"><?php echo resume_content($item->subject, 30);?></a>
                                 </div>
-                                <div class="text-muted"><i class="fa fa-user-o"></i> <?php echo $item->fullname;?></div>
+                                <div class="text-muted"><i class="fa fa-user"></i> <?php echo $item->fullname;?></div>
                             </td>
                             <td nowrap="">
                                 <?php
                                 echo time_ago($item->last_update);
                                 ?>
                                 <?php echo ($item->last_replier == 0 ?
-                                    '<div class="text-muted"><i class="fa fa-user-o"></i> '.$item->fullname.'</div>' :
-                                    '<div class="text-danger"><i class="fa fa-user-secret"></i> '.$item->staff_username);
+                                    '<div class="text-muted"><i class="fa fa-user"></i> '.$item->fullname.'</div>' :
+                                    '<div class="text-warning"><i class="fa fa-user-secret"></i> '.$item->staff_username);
                                 ?>
                             </td>
 
                             <td>
                                 <?php echo $item->topic_name;?>
-                                <div class="text-muted"><i class="fa fa-commenting-o"></i> <?php echo lang_replace('Admin.tickets.totalReplies',['%number%' => $item->replies]);?></div>
+                                <div class="text-muted"><i class="fa fa-comment"></i> <?php echo lang_replace('Admin.tickets.totalReplies',['%number%' => $item->replies]);?></div>
                             </td>
                             <td>
                                 <?php echo (empty($item->category_name) ? '-----' : $item->category_name);?>
@@ -235,7 +235,7 @@ echo form_input([
                                 <?php echo $item->priority_name;?>
                             </td>
 
-                            <?php if(staff_data('admin')==1): ?>
+                            <?php  if(staff_data('role_name')=='admin' || staff_data('role_name')=='supervisor') : ?>
                             <td>
                                 <?php echo (empty($item->staff_name) ? '-----' : $item->staff_name);?>
                             </td>
@@ -263,8 +263,8 @@ echo form_input([
                                 ?>
                             </td>
                         </tr>
-                    <?php endforeach;?>
-                <?php endif;?>
+                    <?php endforeach; ?>
+                <?php endif; ?>
             </table>
         </div>
     </div>
@@ -329,9 +329,7 @@ echo form_input([
                             </select>
                         </div>
                     </div>
-                    <?php
-                    if(staff_data('admin') == 1) {
-                    ?>
+                    <?php if(staff_data('roleName')=='admin' || staff_data('roleName')=='supervisor') { ?>
                     <div class="col-md-4">
                         <div class="form-group">
                             <label><?php echo lang('Admin.form.assignTo');?></label>

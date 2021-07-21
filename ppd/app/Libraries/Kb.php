@@ -71,7 +71,7 @@ class Kb
             ->where('public', 1)
             ->orderBy('position', 'asc')
             ->get();
-        if($q->resultID->num_rows == 0){
+        if($q->getNumRows() == 0){
             return null;
         }
         $list = array();
@@ -123,7 +123,7 @@ class Kb
         $q = $this->categoryModel->where('parent', $parent)
             ->orderBy('position', $parent)
             ->get();
-        if($q->resultID->num_rows == 0){
+        if($q->getNumRows() == 0){
             return null;
         }
         $list = array();
@@ -147,7 +147,7 @@ class Kb
         $q = $this->categoryModel->where('parent', $parent)
             ->orderBy('position')
             ->get();
-        if($q->resultID->num_rows == 0){
+        if($q->getNumRows() == 0){
             return null;
         }
         $r = $q->getResult();
@@ -161,7 +161,7 @@ class Kb
             ->where('parent', $parent)
             ->orderBy('position', 'desc')
             ->get(1);
-        if($q->resultID->num_rows == 0){
+        if($q->getNumRows() == 0){
             $position = 1;
         }else{
             $r = $q->getRow();
@@ -202,7 +202,7 @@ class Kb
                 ->get(1);
 
         }
-        if($q->resultID->num_rows == 0){
+        if($q->getNumRows() == 0){
             return false;
         }
         $other = $q->getRow();
@@ -297,7 +297,7 @@ class Kb
         $q = $this->articlesModel->orWhere('category', $cat)
             ->get(Services::settings()->config('kb_articles'));
 
-        if($q->resultID->num_rows == 0){
+        if($q->getNumRows() == 0){
             return null;
         }
         $r = $q->getResult();
@@ -313,7 +313,7 @@ class Kb
         $q = $this->articlesModel->where('category', $cat_id)
             ->orderBy('date','desc')
             ->get();
-        if($q->resultID->num_rows == 0){
+        if($q->getNumRows() == 0){
             return null;
         }
         $r = $q->getResult();
@@ -340,7 +340,7 @@ class Kb
             ->orderBy('views','desc')
             ->get(Services::settings()->config('kb_popular'));
 
-        if($q->resultID->num_rows == 0){
+        if($q->getNumRows() == 0){
             return null;
         }
         $r = $q->getResult();
@@ -366,7 +366,7 @@ class Kb
         $q = $this->articlesModel->select('id, title')
             ->orderBy('date','desc')
             ->get(Services::settings()->config('kb_latest'));
-        if($q->resultID->num_rows == 0){
+        if($q->getNumRows() == 0){
             return null;
         }
         $r = $q->getResult();
@@ -415,7 +415,7 @@ class Kb
             ->orderBy('date','desc')
             ->get();
 
-        if($q->resultID->num_rows == 0){
+        if($q->getNumRows() == 0){
             return null;
         }
         $r = $q->getResult();

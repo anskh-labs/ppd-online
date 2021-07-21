@@ -72,9 +72,7 @@ return [
         'accountLocked' => 'Akses masuk dikunci selama %n% minutes.',
         'attemptCount' => '(upaya: %1% dari %2%)',
         'invalidUsernamePassword' => 'Nama pengguna atau kata kunci tidak valid.',
-        'accountNotActive' => 'Akun dikunci.',
-        'twoFactorMissing' => 'Kode autentikasi Two-Factor tidak ada.',
-        'twoFactorNotValid' => 'Kode autentikasi Two-Factor gagal.'
+        'accountNotActive' => 'Akun dikunci.'
     ],
     'permissionsList' => [
         'users' => 'Pengguna',

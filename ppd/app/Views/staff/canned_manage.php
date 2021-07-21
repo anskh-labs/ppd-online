@@ -28,7 +28,7 @@ echo form_open('',['id'=>'manageForm'],['do'=>'remove']).
     '<input type="hidden" name="msgID" id="cannedID">'.
     form_close();
 ?>
-    <div class="card">
+    <div class="card mb-3">
         <div class="card-header">
             <div class="row">
                 <div class="col d-none d-sm-block">
@@ -50,7 +50,7 @@ echo form_open('',['id'=>'manageForm'],['do'=>'remove']).
                             <td class="text-right">
                                 <div class="btn-group">
                                     <?php
-                                    if(staff_data('admin')){
+                                    if(staff_data('role_name') == 'admin'){
                                         if($item->position != 1){
                                             echo '<a href="'.site_url(route_to('staff_canned')).'?action=move_up&msgID='.$item->id.'" class="btn btn-outline-dark btn-sm"><i class="fa fa-chevron-up"></i></a>';
                                         }else{
@@ -67,7 +67,7 @@ echo form_open('',['id'=>'manageForm'],['do'=>'remove']).
                                 </div>
                                 <div class="btn-group">
                                     <?php
-                                    if(staff_data('admin') || $item->staff_id == staff_data('id')){
+                                    if(staff_data('role_name') == 'admin' || $item->staff_id == staff_data('id')){
                                         echo '<a href="'.site_url(route_to('staff_canned_edit', $item->id)).'" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>';
                                         echo '<button type="button" onclick="removeCannedResponse('.$item->id.')" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>';
                                     }
@@ -89,4 +89,5 @@ echo form_open('',['id'=>'manageForm'],['do'=>'remove']).
         </div>
     </div>
 <?php
+echo $pager->links();
 $this->endSection();

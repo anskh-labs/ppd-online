@@ -124,8 +124,20 @@ return [
         'new' => 'New agent',
         'informationUpdated' => 'Agent information has been updated.',
         'removeConfirmation' => 'Do you really want to remove this agent?',
+        'removeRoleConfirmation' => 'Do you really want to remove this role?',
         'agentCreated' => 'New agent has been created.',
-        'assignedDepartments' => 'Assigned departments'
+        'assignedDepartments' => 'Assigned departments',
+        'roles'=>'Roles',
+        'manage'=>'Manage',
+        'rolesName'=>'Role Name',
+        'rolesNew'=>'New Role',
+        'rolesCreated' => 'New role has been created',
+        'rolesEdit' => 'Edit Role',
+        'rolesMenu' => 'Roles',
+        'informationRoleUpdated' => 'Role information has been updated.',
+        'rolesAccess' => 'Access',
+        'agentRemoved' => 'Agent has been deleted',
+        'roleRemoved' => 'Role has been deleted'
     ],
     'settings' => [
         'menu' => 'Setup',
@@ -209,6 +221,19 @@ return [
         'notifyNewAccount' => 'Send email to user with account information',
         'accountCreated' => 'User account has been created.',
         'accountUpdated' => 'User account has been updated.'
+    ],
+    'attachments' => [
+        'menu' => 'Attachment Files',
+        'newFile' => 'New Attachment',
+        'name' => 'Name',
+        'type' => 'Type',
+        'size' => 'Size',
+        'article' => 'Article Id',
+        'ticket' => 'Ticket Id',
+        'message' => 'Message Id',
+        'attachments' => 'Attachments Files',
+        'editFile' => 'Edit',
+        'removeFile' => 'Delete'
     ],
     'form' => [
         'username' => 'Username',
@@ -295,7 +320,6 @@ return [
         'edit' => 'Edit',
         'emailName' => 'Email name',
         'none' => 'None',
-        'signature' => 'Signature',
         'newPassword' => 'New password',
         'existingPassword' => 'Existing password',
         'confirm' => 'Confirm',
@@ -310,7 +334,8 @@ return [
         'location' => 'Location',
         'rokanhulu'=>'Rokan Hulu Regency',
         'other' => 'Other',
-        'date' => 'Calendar date'
+        'date' => 'Calendar date',
+        'role' =>'Role'
     ],
     'error' => [
         'recordsNotFound' => 'Records not found.',
@@ -365,24 +390,10 @@ return [
         'wrongExistingPassword' => 'Your existing password is incorrect.',
         'passwordTooShort' => 'The new password must be at least 6 characters in length.',
         'selectTopic' => 'Select a topic.',
-        'topicNotExist' => 'Selected topic does not exist.'
-    ],
-    'twoFactor' => [
-        'title' => 'Two-Factor Authentication',
-        'info' => 'Protect your account with high security log in.',
-        'downloadApp' => ' Download the app for android or %1%iPhone%0% and %2%iPad%0%',
-        'secretKey' => 'Secret Key',
-        'verificationCode' => 'Verification Code',
-        'enter2FA' => 'Enter the 6 digits from your mobile App.',
-        'backupCode' => 'Save this code!',
-        'activate' => 'Activate Two-Factor Authentication',
-        'deactivate' => 'Deactivate Two-Factor Authentication',
-        'activated' => 'Two-Factor authentication has been activated.',
-        'deactivated' => 'Two-Factor authentication was deactivated.',
-        'error' => [
-            'isActive' => 'Two-Factor authentication is already active.',
-            'invalidCode' => 'Invalid verification code.',
-            'invalidPassword' => 'Invalid password.'
-        ]
+        'topicNotExist' => 'Selected topic does not exist.',
+        'enterRoleName' => 'Enter a role name',
+        'roleNameTaken' => 'Role name is being used',
+        'enterValidRoleName' => 'Enter valid role name',
+        'enterRoleAccess' => 'Enter access name'
     ]
 ];

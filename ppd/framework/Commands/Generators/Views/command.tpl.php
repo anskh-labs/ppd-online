@@ -6,14 +6,14 @@ use CodeIgniter\CLI\BaseCommand;
 use CodeIgniter\CLI\CLI;
 <?php if ($type === 'generator'): ?>
 use CodeIgniter\CLI\GeneratorTrait;
-<?php endif ?>
+<?php endif; ?>
 
 class {class} extends BaseCommand
 {
 <?php if ($type === 'generator'): ?>
 	use GeneratorTrait;
 
-<?php endif ?>
+<?php endif; ?>
 	/**
 	 * The Command's Group
 	 *
@@ -71,6 +71,6 @@ class {class} extends BaseCommand
 		$this->execute($params);
 <?php else: ?>
 		//
-<?php endif ?>
+<?php endif; ?>
 	}
 }

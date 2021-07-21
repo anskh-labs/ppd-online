@@ -85,7 +85,7 @@ class Calendar extends BaseController
                 return redirect()->to(current_url());
             }
         }
-        $staff_list = $this->staff->getStaff();
+        $staff_list = $this->staff->getOperator();
         return view('staff/calendar_form', [
             'locale' => $this->locale,
             'date_string' => $dateString,

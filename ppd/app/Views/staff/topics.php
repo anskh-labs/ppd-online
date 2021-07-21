@@ -27,7 +27,7 @@ echo form_open('', ['id' => 'manageForm'], ['do' => 'remove']) .
     '<input type="hidden" name="topic_id" id="topic_id">' .
     form_close();
 ?>
-<div class="card">
+<div class="card mb-3">
     <div class="card-header">
         <div class="row">
             <div class="col-sm-5">
@@ -87,4 +87,5 @@ echo form_open('', ['id' => 'manageForm'], ['do' => 'remove']) .
 </div>
 
 <?php
+echo $pager->links();
 $this->endSection();

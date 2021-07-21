@@ -6,7 +6,7 @@
 $locale = isset($locale) ? $locale : \Config\Services::request()->getLocale();
 ?>
 <!DOCTYPE html>
-<html class="no-js h-100" lang="en">
+<html class="no-js h-100" lang="<?= $locale ?>">
 
 <head>
     <meta charset="utf-8">
@@ -22,9 +22,9 @@ $locale = isset($locale) ? $locale : \Config\Services::request()->getLocale();
         link_tag('assets/components/daterangepicker/daterangepicker.css') .
         link_tag('assets/components/sweetalert/sweetalert2.min.css') .
         link_tag('assets/helpdeskz/css/staff.css');
-        $this->renderSection('css_block');
+    $this->renderSection('css_block');
     ?>
-    
+
 </head>
 
 <body class="h-100">
@@ -64,87 +64,109 @@ $locale = isset($locale) ? $locale : \Config\Services::request()->getLocale();
                 ?>
                 <div class="nav-wrapper">
                     <ul class="nav flex-column">
-                        <?php if (staff_data('admin') == 1) {
-                        ?>
+                        <?php if (staff_data('view_dashboard')) : ?>
                             <li class="nav-item">
                                 <a class="nav-link <?php echo (uri_page_staff() == 'dashboard' ? 'active' : ''); ?>" href="<?php echo site_url(route_to('staff_dashboard')); ?>">
-                                    <i class="fas fa-headset"></i>
+                                    <i class="fas fa-building"></i>
                                     <span><?php echo lang('Dashboard'); ?></span>
                                 </a>
                             </li>
-                        <?php
-                        }
-                        ?>
-                        <li class="nav-item">
-                            <a class="nav-link <?php echo (uri_page_staff() == 'tickets' ? 'active' : ''); ?>" href="<?php echo site_url(route_to('staff_tickets')); ?>">
-                                <i class="fas fa-headset"></i>
-                                <span><?php echo lang('Admin.tickets.menu'); ?></span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link <?php echo (uri_page_staff() == 'canned-responses' ? 'active' : ''); ?>" href="<?php echo site_url(route_to('staff_canned')); ?>">
-                                <i class="far fa-comment-dots"></i>
-                                <span><?php echo lang('Admin.cannedResponses.menu'); ?></span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link <?php echo (uri_page_staff() == 'kb' ? 'active' : ''); ?>" href="<?php echo site_url(route_to('staff_kb_articles')); ?>">
-                                <i class="fa fa-book"></i>
-                                <span><?php echo lang('Admin.kb.menu'); ?></span>
-                            </a>
-                        </li>
-
-                        <?php
-                        if (staff_data('admin') == 1) {
-                        ?>
+                        <?php endif; ?>
+                        <?php if (staff_data('view_ticket')) : ?>
                             <li class="nav-item">
-                            <a class="nav-link <?php echo (uri_page_staff() == 'users' ? 'active' : ''); ?>" href="<?php echo site_url(route_to('staff_users')); ?>">
-                                <i class="fas fa-users"></i>
-                                <span><?php echo lang('Admin.users.menu'); ?></span>
-                            </a>
-                        </li>
+                                <a class="nav-link <?php echo (uri_page_staff() == 'tickets' ? 'active' : ''); ?>" href="<?php echo site_url(route_to('staff_tickets')); ?>">
+                                    <i class="fas fa-headset"></i>
+                                    <span><?php echo lang('Admin.tickets.menu'); ?></span>
+                                </a>
+                            </li>
+                        <?php endif; ?>
+                        <?php if (staff_data('view_canned_responses')) : ?>
+                            <li class="nav-item">
+                                <a class="nav-link <?php echo (uri_page_staff() == 'canned-responses' ? 'active' : ''); ?>" href="<?php echo site_url(route_to('staff_canned')); ?>">
+                                    <i class="far fa-comment-dots"></i>
+                                    <span><?php echo lang('Admin.cannedResponses.menu'); ?></span>
+                                </a>
+                            </li>
+                        <?php endif; ?>
+                        <?php if (staff_data('view_kb')) : ?>
+                            <li class="nav-item">
+                                <a class="nav-link <?php echo (uri_page_staff() == 'kb' ? 'active' : ''); ?>" href="<?php echo site_url(route_to('staff_kb_articles')); ?>">
+                                    <i class="fa fa-book"></i>
+                                    <span><?php echo lang('Admin.kb.menu'); ?></span>
+                                </a>
+                            </li>
+                        <?php endif; ?>
+                        <?php if (staff_data('view_attachments')) : ?>
+                            <li class="nav-item">
+                                <a class="nav-link <?php echo (uri_page_staff() == 'attachments' ? 'active' : ''); ?>" href="<?php echo site_url(route_to('staff_attachments')); ?>">
+                                    <i class="fa fa-folder"></i>
+                                    <span><?php echo lang('Admin.attachments.menu'); ?></span>
+                                </a>
+                            </li>
+                        <?php endif; ?>
+                        <?php if (staff_data('view_users')) : ?>
+                            <li class="nav-item">
+                                <a class="nav-link <?php echo (uri_page_staff() == 'users' ? 'active' : ''); ?>" href="<?php echo site_url(route_to('staff_users')); ?>">
+                                    <i class="fas fa-users"></i>
+                                    <span><?php echo lang('Admin.users.menu'); ?></span>
+                                </a>
+                            </li>
+                        <?php endif; ?>
+                        <?php if (staff_data('view_categories')) : ?>
                             <li class="nav-item">
                                 <a class="nav-link <?php echo (uri_page_staff() == 'categories' ? 'active' : ''); ?>" href="<?php echo site_url(route_to('staff_categories')); ?>">
                                     <i class="fas fa-project-diagram"></i>
                                     <span><?php echo lang('Admin.cat.categories'); ?></span>
                                 </a>
                             </li>
+                        <?php endif; ?>
+                        <?php if (staff_data('view_topics')) : ?>
                             <li class="nav-item">
                                 <a class="nav-link <?php echo (uri_page_staff() == 'topics' ? 'active' : ''); ?>" href="<?php echo site_url(route_to('staff_topics')); ?>">
                                     <i class="fas fa-list"></i>
                                     <span><?php echo lang('Admin.top.topics'); ?></span>
                                 </a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link <?php echo (uri_page_staff() == 'agents' ? 'active' : ''); ?>" href="<?php echo site_url(route_to('staff_agents')); ?>">
+                        <?php endif; ?>
+                        <?php if (staff_data('view_agents')) : ?>
+                            <li class="nav-item dropdown <?php echo (uri_page_staff() == 'agents' ? 'show' : ''); ?>">
+                                <a class="nav-link dropdown-toggle <?php echo (uri_page_staff() == 'agents' ? 'active' : ''); ?>" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="true">
                                     <i class="fas fa-chalkboard-teacher"></i>
                                     <span><?php echo lang('Admin.agents.menu'); ?></span>
                                 </a>
+                                <div class="dropdown-menu dropdown-menu-small <?php echo (uri_page_staff() == 'agents' ? 'show' : ''); ?>">
+                                    <?php if (staff_data('view_roles')) : ?>
+                                        <a class="dropdown-item <?php echo strpos(uri_string(), 'agents/roles') !== false ? 'active' : ''; ?>" href="<?php echo site_url(route_to('staff_agents_roles')); ?>"><?php echo lang('Admin.agents.roles'); ?></a>
+                                    <?php endif; ?>
+                                    <a class="dropdown-item <?php echo strpos(uri_string(), 'agents/agents') !== false ? 'active' : ''; ?>" href="<?php echo site_url(route_to('staff_agents')); ?>"><?php echo lang('Admin.agents.menu'); ?></a>
+                                </div>
                             </li>
+                        <?php endif; ?>
+                        <?php if (staff_data('view_schedule')) : ?>
                             <li class="nav-item">
                                 <a class="nav-link <?php echo (uri_page_staff() == 'calendar' ? 'active' : ''); ?>" href="<?php echo site_url(route_to('staff_calendar')); ?>">
                                     <i class="fa fa-calendar"></i>
                                     <span><?php echo lang('Admin.cal.menu'); ?></span>
                                 </a>
                             </li>
+                        <?php endif; ?>
+                        <?php if (staff_data('view_setup')) : ?>
                             <li class="nav-item dropdown <?php echo (uri_page_staff() == 'setup' ? 'show' : ''); ?>">
                                 <a class="nav-link dropdown-toggle <?php echo (uri_page_staff() == 'setup' ? 'active' : ''); ?>" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="true">
                                     <i class="fa fa-cogs"></i>
                                     <span><?php echo lang('Admin.settings.menu'); ?></span>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-small <?php echo (uri_page_staff() == 'setup' ? 'show' : ''); ?>">
-                                    <a class="dropdown-item <?php echo strpos(uri_string(), 'setup/general') !== false ? 'active' : ''; ?>" href="<?php echo site_url(route_to('staff_general_settings')); ?>"><?php echo lang('Admin.settings.general'); ?></a>
-                                    <a class="dropdown-item <?php echo strpos(uri_string(), 'setup/security') !== false ? 'active' : ''; ?>" href="<?php echo site_url(route_to('staff_security_settings')); ?>"><?php echo lang('Admin.settings.security'); ?></a>
-                                    <a class="dropdown-item <?php echo strpos(uri_string(), 'setup/tickets') !== false ? 'active' : ''; ?>" href="<?php echo site_url(route_to('staff_tickets_settings')); ?>"><?php echo lang('Admin.settings.tickets'); ?></a>
-                                    <a class="dropdown-item <?php echo strpos(uri_string(), 'setup/kb') !== false ? 'active' : ''; ?>" href="<?php echo site_url(route_to('staff_kb_settings')); ?>"><?php echo lang('Admin.settings.kb'); ?></a>
-                                    <a class="dropdown-item <?php echo strpos(uri_string(), 'setup/email-templates') !== false ? 'active' : ''; ?>" href="<?php echo site_url(route_to('staff_email_templates')); ?>"><?php echo lang('Admin.settings.emailTemplates'); ?></a>
-                                    <a class="dropdown-item <?php echo strpos(uri_string(), 'setup/email-addresses') !== false ? 'active' : ''; ?>" href="<?php echo site_url(route_to('staff_emails')); ?>"><?php echo lang('Admin.settings.emailAddresses'); ?></a>
-                                    <a class="dropdown-item <?php echo strpos(uri_string(), 'setup/api') !== false ? 'active' : ''; ?>" href="<?php echo site_url(route_to('staff_api')); ?>"><?php echo lang('Api.configuration'); ?></a>
+                                        <a class="dropdown-item <?php echo strpos(uri_string(), 'setup/general') !== false ? 'active' : ''; ?>" href="<?php echo site_url(route_to('staff_general_settings')); ?>"><?php echo lang('Admin.settings.general'); ?></a>
+                                        <a class="dropdown-item <?php echo strpos(uri_string(), 'setup/security') !== false ? 'active' : ''; ?>" href="<?php echo site_url(route_to('staff_security_settings')); ?>"><?php echo lang('Admin.settings.security'); ?></a>
+                                        <a class="dropdown-item <?php echo strpos(uri_string(), 'setup/tickets') !== false ? 'active' : ''; ?>" href="<?php echo site_url(route_to('staff_tickets_settings')); ?>"><?php echo lang('Admin.settings.tickets'); ?></a>
+                                        <a class="dropdown-item <?php echo strpos(uri_string(), 'setup/kb') !== false ? 'active' : ''; ?>" href="<?php echo site_url(route_to('staff_kb_settings')); ?>"><?php echo lang('Admin.settings.kb'); ?></a>
+                                        <a class="dropdown-item <?php echo strpos(uri_string(), 'setup/email-templates') !== false ? 'active' : ''; ?>" href="<?php echo site_url(route_to('staff_email_templates')); ?>"><?php echo lang('Admin.settings.emailTemplates'); ?></a>
+                                        <a class="dropdown-item <?php echo strpos(uri_string(), 'setup/email-addresses') !== false ? 'active' : ''; ?>" href="<?php echo site_url(route_to('staff_emails')); ?>"><?php echo lang('Admin.settings.emailAddresses'); ?></a>
+                                        <a class="dropdown-item <?php echo strpos(uri_string(), 'setup/api') !== false ? 'active' : ''; ?>" href="<?php echo site_url(route_to('staff_api')); ?>"><?php echo lang('Api.configuration'); ?></a>
                                 </div>
                             </li>
-                        <?php
-                        }
-                        ?>
+                        <?php endif; ?>
                     </ul>
                 </div>
             </aside>
@@ -237,6 +259,7 @@ $locale = isset($locale) ? $locale : \Config\Services::request()->getLocale();
         var langTopConfirmation = '<?php echo addcslashes(lang('Admin.top.removeConfirmation'), "'"); ?>';
         var langKbArticleConfirmation = '<?php echo addcslashes(lang('Admin.kb.removeArticleConfirmation'), "'"); ?>';
         var langAgentsConfirmation = '<?php echo addcslashes(lang('Admin.agents.removeConfirmation'), "'"); ?>';
+        var langRolesConfirmation = '<?php echo addcslashes(lang('Admin.agents.removeRoleConfirmation'), "'"); ?>';
         var langEmailConfirmation = '<?php echo addcslashes(lang('Admin.settings.emailDeletionConfirm'), "'"); ?>';
         var langUserConfirmation = '<?php echo addcslashes(lang('Admin.users.removeUserConfirmation'), "'"); ?>';
         var langNoteConfirmation = '<?php echo addcslashes(lang('Admin.tickets.notesRemoveConfirmation'), "'"); ?>';

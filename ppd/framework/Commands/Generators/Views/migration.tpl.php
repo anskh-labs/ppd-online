@@ -21,7 +21,7 @@ class {class} extends Migration
 	$this->forge->addKey(['id', 'ip_address'], true);
 	<?php else: ?>
 	$this->forge->addKey('id', true);
-	<?php endif ?>
+	<?php endif; ?>
 	$this->forge->addKey('timestamp');
 		$this->forge->createTable('<?= $table ?>', true);
 	}
@@ -40,5 +40,5 @@ class {class} extends Migration
 	{
 		//
 	}
-<?php endif ?>
+<?php endif; ?>
 }

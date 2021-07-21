@@ -35,7 +35,7 @@ class Categories
             ->where('public', 1)
             ->orderBy('position', 'asc')
             ->get();
-        if ($q->resultID->num_rows == 0) {
+        if ($q->getNumRows() == 0) {
             return null;
         }
         $list = array();
@@ -83,6 +83,11 @@ class Categories
         return $list;
     }
 
+    public function getAll()
+    {
+        return $this->getChildren(0, false, 0, ' - - - ');
+    }
+
     public function getChildren($parent = 0, $public = true, $level = 1, $prepend = '')
     {
         if ($public) {
@@ -91,7 +96,7 @@ class Categories
         $q = $this->categoryModel->where('parent', $parent)
             ->orderBy('position', $parent)
             ->get();
-        if ($q->resultID->num_rows == 0) {
+        if ($q->getNumRows() == 0) {
             return null;
         }
         $list = array();
@@ -115,7 +120,7 @@ class Categories
         $q = $this->categoryModel->where('parent', $parent)
             ->orderBy('position')
             ->get();
-        if ($q->resultID->num_rows == 0) {
+        if ($q->getNumRows() == 0) {
             return null;
         }
         $r = $q->getResult();
@@ -129,7 +134,7 @@ class Categories
             ->where('parent', $parent)
             ->orderBy('position', 'desc')
             ->get(1);
-        if ($q->resultID->num_rows == 0) {
+        if ($q->getNumRows() == 0) {
             $position = 1;
         } else {
             $r = $q->getRow();
@@ -169,7 +174,7 @@ class Categories
                 ->orderBy('position', 'asc')
                 ->get(1);
         }
-        if ($q->resultID->num_rows == 0) {
+        if ($q->getNumRows() == 0) {
             return false;
         }
         $other = $q->getRow();
@@ -239,7 +244,7 @@ class Categories
         $q = $this->articlesModel->where('category', $cat_id)
             ->orderBy('date', 'desc')
             ->get();
-        if ($q->resultID->num_rows == 0) {
+        if ($q->getNumRows() == 0) {
             return null;
         }
         $r = $q->getResult();
@@ -264,7 +269,7 @@ class Categories
         $q = $this->ticketsModel->where('category', $cat_id)
             ->orderBy('date', 'desc')
             ->get();
-        if ($q->resultID->num_rows == 0) {
+        if ($q->getNumRows() == 0) {
             return null;
         }
         $r = $q->getResult();

@@ -48,7 +48,7 @@ class Calendar
                ->where('calendar_date', $dateString)
                ->join('staff as s', 's.id=calendar.staff_id', 'left')
                ->get(1);
-          if ($q->resultID->num_rows == 0) {
+          if ($q->getNumRows() == 0) {
                return null;
           }
           return $q->getRow();
@@ -59,7 +59,7 @@ class Calendar
           $q = $this->model->select($select)
                ->where($data)
                ->get(1);
-          if ($q->resultID->num_rows == 0) {
+          if ($q->getNumRows() == 0) {
                return null;
           }
           return $q->getRow();

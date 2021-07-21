@@ -16,10 +16,6 @@ class Users extends BaseController
 {
     public function manage()
     {
-        if($this->staff->getData('admin') != 1){
-             return redirect()->route('staff_dashboard');
-        }
-
         if($this->request->getPost('do') == 'remove'){
             $validation = Services::validation();
             $validation->setRule('user_id',lang('Admin.form.user'), 'required|is_natural_no_zero');
@@ -43,10 +39,6 @@ class Users extends BaseController
 
     public function newAccount()
     {
-        if($this->staff->getData('admin') != 1){
-            return redirect()->route('staff_dashboard');
-        }
-
         if($this->request->getPost('do') == 'submit')
         {
             $validation = Services::validation();
@@ -101,10 +93,6 @@ class Users extends BaseController
 
     public function editAccount($user_id)
     {
-        if($this->staff->getData('admin') != 1){
-            return redirect()->route('staff_dashboard');
-        }
-
         if(!$user = $this->client->getRow(['id' => $user_id])){
             return redirect()->route('staff_users');
         }

@@ -26,11 +26,13 @@ class Topics extends BaseController
             $this->session->setFlashdata('form_success', lang('Admin.top.topicRemoved'));
             return redirect()->to(current_url());
         }
+        $data = $topics->getAll();
         return view('staff/topics', [
             'locale' => $this->locale,
             'error_msg' => isset($error_msg) ? $error_msg : null,
             'success_msg' => ($this->session->has('form_success') ? $this->session->getFlashdata('form_success') : null),
-            'top_list' => $topics->getAll()
+            'top_list' => $data['topics'],
+            'pager'=>$data['pager']
         ]);
     }
 

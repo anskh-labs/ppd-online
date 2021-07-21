@@ -173,5 +173,5 @@ class {class} extends {extends}
 	{
 		//
 	}
-<?php endif ?>
+<?php endif; ?>
 }

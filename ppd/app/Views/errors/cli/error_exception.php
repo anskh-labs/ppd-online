@@ -11,7 +11,7 @@ Line Number: <?= $exception->getLine(); ?>
 	<?php foreach ($exception->getTrace() as $error): ?>
 		<?php if (isset($error['file'])): ?>
 			<?= trim('-' . $error['line'] . ' - ' . $error['file'] . '::' . $error['function']) . "\n" ?>
-		<?php endif ?>
+		<?php endif; ?>
 	<?php endforeach ?>
 
-<?php endif ?>
+<?php endif; ?>

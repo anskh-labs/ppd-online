@@ -69,7 +69,7 @@ class Users extends ResourceController
         if($this->request->getGet('email') != ''){
             $this->model->where('email', $this->request->getGet('email'));
             $q = $this->model->get(1);
-            if($q->resultID->num_rows == 0){
+            if($q->getNumRows() == 0){
                 return $api->output(lang('Api.error.userNotFound'), true);
             }else{
                 return $api->output(['user_data' => $q->getRow()]);
@@ -80,7 +80,7 @@ class Users extends ResourceController
                 return $api->output(lang('Api.error.pageNotFound'), true);
             }
             $result = $this->model->orderBy('id','desc')
-                ->paginate(25, 'default', $page);
+                ->paginate(site_config('page_size'), 'default', $page);
             $pager = $this->model->pager;
             return $api->output([
                 'total_users' => $pager->getDetails()['total'],

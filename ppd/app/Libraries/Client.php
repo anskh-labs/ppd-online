@@ -102,7 +102,7 @@ class Client
         $q = $this->usersModel->select($select)
             ->where($data)
             ->get(1);
-        if($q->resultID->num_rows == 0){
+        if($q->getNumRows() == 0){
             return null;
         }
         return $q->getRow();
@@ -168,7 +168,7 @@ class Client
     public function manage()
     {
         $result = $this->usersModel->orderBy('id','desc')
-            ->paginate(25, 'default');
+            ->paginate(site_config('page_size'), 'default');
         return [
             'result' => $result,
             'pager' => $this->usersModel->pager

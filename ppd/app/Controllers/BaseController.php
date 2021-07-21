@@ -66,22 +66,28 @@ class BaseController extends Controller
 		//--------------------------------------------------------------------
 		// Preload any models, libraries, etc, here.
 		//--------------------------------------------------------------------
-		// E.g.:
-		// $this->session = \Config\Services::session();
-        if(!defined('INSTALL_ENVIRONMENT')){
-            $this->client = Services::client();
-            $this->settings = Services::settings();
-            $this->session = Services::session();
-            $this->staff = Services::staff();
-            if($this->settings->config('maintenance') == 1){
-                if(!$this->staff->isOnline()){
-                    die();
-                }
-            }
-            if($request instanceof IncomingRequest){
-                $this->locale = $request->getLocale();
+        $this->client = Services::client();
+        $this->settings = Services::settings();
+        $this->session = Services::session();
+        $this->staff = Services::staff();
+        if($this->settings->config('maintenance') == 1){
+            if(!$this->staff->isOnline()){
+                die();
             }
         }
+        if($request instanceof IncomingRequest){
+            $this->locale = $request->getLocale();
+        }
 	}
+    /**
+     * Autorize page
+     */
+    public function autorize($access)
+    {
+        if ($this->staff->getData($access) == 0) {
+            return false;
+        }
+        return true;
+    }
 
 }

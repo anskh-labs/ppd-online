@@ -51,12 +51,12 @@
 							<?= $c['title'] ?>
 							<?php if (! is_null($c['badgeValue'])) : ?>
 								<span class="badge"><?= $c['badgeValue'] ?></span>
-							<?php endif ?>
+							<?php endif; ?>
 						</span>
 					</a>
 				</span>
-			<?php endif ?>
-		<?php endforeach ?>
+			<?php endif; ?>
+		<?php endforeach; ?>
 
 		<span class="ci-label">
 			<a href="javascript: void(0)" data-tab="ci-vars">
@@ -109,9 +109,9 @@
 
 					<?= is_string($c['display']) ? $c['display'] : $parser->setData($c['display'])->render("_{$c['titleSafe']}.tpl") ?>
 				</div>
-			<?php endif ?>
-		<?php endif ?>
-	<?php endforeach ?>
+			<?php endif; ?>
+		<?php endif; ?>
+	<?php endforeach; ?>
 
 	<!-- In & Out -->
 	<div id="ci-vars" class="tab">
@@ -134,15 +134,15 @@
 								<td><?= $key ?></td>
 								<td><?= $value ?></td>
 							</tr>
-						<?php endforeach ?>
+						<?php endforeach; ?>
 						</tbody>
 					</table>
 
 				<?php else: ?>
 					<p class="muted">No data to display.</p>
-				<?php endif ?>
-			<?php endforeach ?>
-		<?php endif ?>
+				<?php endif; ?>
+			<?php endforeach; ?>
+		<?php endif; ?>
 
 		<!-- Session -->
 		<a href="javascript:void(0)" onclick="ciDebugBar.toggleDataTable('session'); return false;">
@@ -158,15 +158,15 @@
 							<td><?= $key ?></td>
 							<td><?= $value ?></td>
 						</tr>
-					<?php endforeach ?>
+					<?php endforeach; ?>
 					</tbody>
 				</table>
 			<?php else : ?>
 				<p class="muted">No data to display.</p>
-			<?php endif ?>
+			<?php endif; ?>
 		<?php else : ?>
 			<p class="muted">Session doesn't seem to be active.</p>
-		<?php endif ?>
+		<?php endif; ?>
 
 		<h2>Request <span>( <?= $vars['request'] ?> )</span></h2>
 
@@ -182,10 +182,10 @@
 						<td><?= $name ?></td>
 						<td><?= $value ?></td>
 					</tr>
-				<?php endforeach ?>
+				<?php endforeach; ?>
 				</tbody>
 			</table>
-		<?php endif ?>
+		<?php endif; ?>
 
 		<?php if (isset($vars['post']) && $post = $vars['post']) : ?>
 			<a href="javascript:void(0)" onclick="ciDebugBar.toggleDataTable('post'); return false;">
@@ -199,10 +199,10 @@
 						<td><?= $name ?></td>
 						<td><?= $value ?></td>
 					</tr>
-				<?php endforeach ?>
+				<?php endforeach; ?>
 				</tbody>
 			</table>
-		<?php endif ?>
+		<?php endif; ?>
 
 		<?php if (isset($vars['headers']) && $headers = $vars['headers']) : ?>
 			<a href="javascript:void(0)" onclick="ciDebugBar.toggleDataTable('request_headers'); return false;">
@@ -216,10 +216,10 @@
 						<td><?= $header ?></td>
 						<td><?= $value ?></td>
 					</tr>
-				<?php endforeach ?>
+				<?php endforeach; ?>
 				</tbody>
 			</table>
-		<?php endif ?>
+		<?php endif; ?>
 
 		<?php if (isset($vars['cookies']) && $cookies = $vars['cookies']) : ?>
 			<a href="javascript:void(0)" onclick="ciDebugBar.toggleDataTable('cookie'); return false;">
@@ -233,10 +233,10 @@
 						<td><?= $name ?></td>
 						<td><?= is_array($value) ? print_r($value, true) : $value ?></td>
 					</tr>
-				<?php endforeach ?>
+				<?php endforeach; ?>
 				</tbody>
 			</table>
-		<?php endif ?>
+		<?php endif; ?>
 
 		<h2>Response
 			<span>( <?= $vars['response']['statusCode'] . ' - ' . $vars['response']['reason'] ?> )</span>
@@ -254,10 +254,10 @@
 						<td><?= $header ?></td>
 						<td><?= $value ?></td>
 					</tr>
-				<?php endforeach ?>
+				<?php endforeach; ?>
 				</tbody>
 			</table>
-		<?php endif ?>
+		<?php endif; ?>
 	</div>
 
 	<!-- Config Values -->
@@ -273,5 +273,5 @@
 		<?= $style ?>
 	}
 
-	<?php endforeach ?>
+	<?php endforeach; ?>
 </style>

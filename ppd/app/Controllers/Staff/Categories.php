@@ -33,11 +33,12 @@ class Categories extends BaseController
             $this->session->setFlashdata('form_success', lang('Admin.cat.categoryRemoved'));
             return redirect()->to(current_url());
         }
+        $data = $cat->getAll();
         return view('staff/categories', [
             'locale' => $this->locale,
             'error_msg' => isset($error_msg) ? $error_msg : null,
             'success_msg' => ($this->session->has('form_success') ? $this->session->getFlashdata('form_success') : null),
-            'cat_list' => $cat->getChildren(0, false, 0, ' - - - ')
+            'cat_list' => $data
         ]);
     }
 

@@ -85,21 +85,16 @@ echo form_open('',['id'=>'manageForm'],['do'=>'remove']).
                     <tr>
                         <td>
                             <?php echo resume_content($item->title, 50);?><br>
-                            <small><i class="fa fa-folder-open-o"></i> <?php echo $item->category_name;?></small>
+                            <small><i class="fa fa-folder-open"></i> <?php echo $item->category_name;?></small>
                         </td>
                         <td><?php echo $item->author;?></td>
                         <td><?php echo dateFormat($item->date);?></td>
                         <td><?php echo ($item->last_update == 0 ? '-' : dateFormat($item->last_update));?></td>
                         <td><?php echo $item->views;?></td>
                         <td class="text-right">
-                            <div class="dropdown ">
-                                <button class="btn btn-primary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <?php echo lang('Admin.form.action');?>
-                                </button>
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    <a class="dropdown-item" href="<?php echo site_url(route_to('staff_kb_edit_article', $item->id));?>"><i class="far fa-edit"></i> <?php echo lang('Admin.kb.editArticle');?></a>
-                                    <button class="dropdown-item" onclick="removeArticle(<?php echo $item->id;?>);"><i class="far fa-trash-alt"></i> <?php echo lang('Admin.form.delete');?></button>
-                                </div>
+                            <div class="btn-group">
+                                <a href="<?php echo site_url(route_to('staff_kb_edit_article', $item->id));?>" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>
+                                <button type="button" onclick="removeArticle(<?php echo $item->id;?>)" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
                             </div>
                         </td>
                     </tr>

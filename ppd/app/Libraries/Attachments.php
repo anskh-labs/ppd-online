@@ -112,11 +112,22 @@ class Attachments
         $this->attachmentModel->protect(true);
     }
 
+    public function getFiles()
+    {
+        $q = $this->attachmentModel->orderBy('id', 'asc')
+            ->paginate(site_config('page_size'), 'default');
+        
+        return[
+            'files' => $q,
+            'pager' => $this->attachmentModel->pager
+        ];
+    }
+
     public function getList($data)
     {
         $q = $this->attachmentModel->where($data)
             ->get();
-        if ($q->resultID->num_rows == 0) {
+        if ($q->getNumRows() == 0) {
             return null;
         }
         $r = $q->getResult();
@@ -129,7 +140,7 @@ class Attachments
     {
         $q = $this->attachmentModel->where($data)
             ->get();
-        if ($q->resultID->num_rows == 0) {
+        if ($q->getNumRows() == 0) {
             return null;
         }
         return $q->getRow();
@@ -153,7 +164,7 @@ class Attachments
         $q = $this->attachmentModel->select('id, enc, article_id, ticket_id')
             ->where($data)
             ->get();
-        if ($q->resultID->num_rows == 0) {
+        if ($q->getNumRows() == 0) {
             return false;
         }
         foreach ($q->getResult() as $item) {

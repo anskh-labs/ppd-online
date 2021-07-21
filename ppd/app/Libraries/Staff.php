@@ -15,10 +15,15 @@ use Config\Services;
 class Staff
 {
     private $staffModel;
+    private $roleModel;
+    private $db;
     private $is_online=null;
+    private $user_data=null;
     public function __construct()
     {
         $this->staffModel = new \App\Models\Staff();
+        $this->roleModel = new \App\Models\Roles(); 
+        $this->db = Database::connect();
     }
     public function isOnline()
     {
@@ -36,7 +41,7 @@ class Staff
 
     private function validate_session($user_id, $hash)
     {
-        if(!$data = $this->getRow(['id' => $user_id])){
+        if(!$data = $this->getAgentWithRole(['id' => $user_id])){
             return $this->logout();
         }
         $request = Services::request();
@@ -79,11 +84,6 @@ class Staff
         $this->create_session($this->getData('id'), $hash, $this->getData('token'), true);
     }
 
-    /*
-     * ------------------------------
-     * Login
-     * ------------------------------
-     */
     public function verifyPassword($staffData)
     {
         $password = Services::request()->getPost('password');
@@ -100,6 +100,12 @@ class Staff
         }
         return true;
     }
+
+    /*
+     * ------------------------------
+     * Login
+     * ------------------------------
+     */
     public function login($staff_data, $remember=true)
     {
         $this->update([
@@ -117,17 +123,16 @@ class Staff
         //Delete logs
         $settings = Services::settings();
         $request = Services::request();
-        $db = Database::connect();
         $ip_address = is_null($ip_address) ? $request->getIPAddress() : $ip_address;
-        $builder = $db->table('login_attempt');
+        $builder = $this->db->table('login_attempt');
         $builder->delete([
                 'date <' => time()-(60*$settings->config('login_attempt_minutes'))
             ]);
         //Verify
         $q = $builder->select('attempts, date')
             ->where('ip', $ip_address)
-            ->get(1);
-        if($q->resultID->num_rows == 0){
+            ->get();
+        if($q->getNumRows() == 0){
             return false;
         }
         $result = $q->getRow();
@@ -144,12 +149,11 @@ class Staff
             return '0';
         }
         $request = Services::request();
-        $db = Database::connect();
-        $builder = $db->table('login_attempt');
+        $builder = $this->db->table('login_attempt');
         $ip_address = (!is_null($ip_address) ? $ip_address : $request->getIPAddress());
         $q = $builder->where('ip', $ip_address)
-            ->get(1);
-        if($q->resultID->num_rows == 0){
+            ->get();
+        if($q->getNumRows() == 0){
             $builder->insert([
                 'ip' => $ip_address,
                 'attempts' => 1,
@@ -168,16 +172,15 @@ class Staff
     public function addLoginLog($staff_id, $success=false, $ip_address=null)
     {
         $request = Services::request();
-        $db = Database::connect();
         $user_agent = (!is_null($ip_address) ? 'HelpDeskZ API' : $request->getUserAgent());
         $ip_address = (!is_null($ip_address) ? $ip_address : $request->getIPAddress());
         if($success){
-            $builder = $db->table('login_attempt');
+            $builder = $this->db->table('login_attempt');
             $builder->where('ip', $ip_address)
                 ->delete();
         }
 
-        $builder = $db->table('login_log');
+        $builder = $this->db->table('login_log');
         $builder->insert([
             'date' => time(),
             'staff_id' => $staff_id,
@@ -221,10 +224,10 @@ class Staff
             ->order_by('t.id','asc')
             ->from('topic as t')
             ->get();
-        if($q->num_rows() == 0){
+        if($q->getNumRows() == 0){
             return null;
         }
-        $r = $q->result();
+        $r = $q->getResult();
         $q->free_result();
         return $r;
     }
@@ -234,25 +237,41 @@ class Staff
      * Agents
      * -------------------------------------
      */
-    public function getAgents()
+    public function getAgentsWithRoles()
     {
-        $q = $this->staffModel->orderBy('id','asc')
-            ->get();
-        $r = $q->getResult();
-        $q->freeResult();;
-        return $r;
+        $q = $this->staffModel->select('*')
+            ->join('roles', 'staff.role=roles.role_id', 'left')
+            ->orderBy('id','asc');
+         
+        return [
+            'agents' => $q->paginate(site_config('page_size'), 'default'),
+            'pager' => $this->staffModel->pager
+        ];
     }
-
-    public function getStaff()
+    public function getAgentWithRole($data=[])
     {
-        $q = $this->staffModel->orderBy('id','asc')->where('admin', 0)
+        $q = $this->staffModel->select('*')
+            ->join('roles', 'staff.role=roles.role_id', 'left')
+            ->where($data)
             ->get();
+        return $q->getRow();
+    }
+    public function getOperator()
+    {
+        $q = $this->staffModel->select('*')
+            ->join('roles','staff.role=roles.role_id','left')
+            ->orderBy('id','asc')
+            ->where('role_name', 'operator')
+            ->get();
+        if($q->getNumRows() == 0){
+            return null;
+        }
         $r = $q->getResult();
-        $q->freeResult();;
+        $q->freeResult();
         return $r;
     }    
 
-    public function newAgent($fullname, $username, $email, $password, $admin=0, $active=1)
+    public function newAgent($fullname, $username, $email, $password, $role=0, $active=1)
     {
         $this->staffModel->protect(false);
         $this->staffModel->insert([
@@ -261,14 +280,14 @@ class Staff
             'email' => $email,
             'password' => password_hash($password, PASSWORD_BCRYPT),
             'registration' => time(),
-            'admin' => $admin,
+            'role' => $role,
             'active' => $active
         ]);
         $this->staffModel->protect(true);
         return $this->staffModel->getInsertID();
     }
 
-    public function updateAgent($id, $fullname, $username, $email, $password, $admin=0, $active=1)
+    public function updateAgent($id, $fullname, $username, $email, $password, $role=0, $active=1)
     {
         $this->staffModel->protect(false);
         if($password != ''){
@@ -278,7 +297,7 @@ class Staff
             'fullname' => esc($fullname),
             'username' => $username,
             'email' => $email,
-            'admin' => $admin,
+            'role' => $role,
             'active' => $active
         ])->update($id);
         $this->staffModel->protect(false);
@@ -288,10 +307,71 @@ class Staff
     public function removeAgent($id)
     {
         $this->staffModel->delete($id);
-        $db = Database::connect();
-        $db->table('login_log')
+        $this->db->table('tickets')
             ->where('staff_id', $id)
-            ->delete();
+            ->set(['staff_id'=>0])
+            ->update();
+        $this->db->table('tickets_messages')
+            ->where('staff_id', $id)
+            ->set(['staff_id'=>0])
+            ->update();
+        $this->db->table('ticket_notes')
+            ->where('staff_id', $id)
+            ->set(['staff_id'=>0])
+            ->update();
+    }
+    public function agentRoles()
+    {
+        $result = $this->roleModel->orderBy('role_id','asc')
+        ->paginate(site_config('page_size'), 'default');
+        return [
+            'roles' => $result,
+            'pager' => $this->roleModel->pager
+        ];
+    }
+
+    public function getRoles()
+    {
+        $q = $this->roleModel->orderBy('role_id', 'asc')->get();
+        if($q->getNumRows() == 0){
+            return null;
+        }
+        $r = $q->getResult();
+        $q->freeResult();
+        return $r;
+    }
+
+    public function newRole($name)
+    {
+        $this->roleModel->protect(false);
+        $this->roleModel->insert([
+            'role_name' => esc($name)
+        ]);
+        $this->roleModel->protect(true);
+        return $this->roleModel->getInsertID();
+    }
+
+    public function getRoleData($data=array(),$select='*')
+    {
+        $q = $this->roleModel->select($select)
+            ->where($data)
+            ->get(1);
+        if($q->getNumRows() == 0){
+            return null;
+        }
+        return $q->getRow();
+    }
+
+    public function updateRole($data=array(), $id=null){
+        $this->roleModel->protect(false);
+        $this->roleModel->update($id, $data);
+        $this->roleModel->protect(true);
+    }
+
+    public function removeRole($id)
+    {
+        $this->roleModel->delete($id);
+        $this->staffModel->where('role',$id)->set(['role' => 0])->update();
     }
     /*
      * ---------------------------------
@@ -303,7 +383,7 @@ class Staff
         $q = $this->staffModel->select($select)
             ->where($data)
             ->get(1);
-        if($q->resultID->num_rows == 0){
+        if($q->getNumRows() == 0){
             return null;
         }
         return $q->getRow();
@@ -320,20 +400,32 @@ class Staff
 
     public function getData($var)
     {
-        return isset($this->user_data->$var) ? $this->user_data->$var : null;
+        return isset($this->user_data->{$var}) ? $this->user_data->{$var} : null;
     }
 
     public function lastLoginLogs()
     {
-        $q = $this->db->where('staff_id', $this->getData('id'))
-            ->order_by('date','desc')
+        $builder = $this->db->table('login_log');
+        $q = $builder->where('staff_id', $this->getData('id'))
             ->limit(10)
-            ->get('login_log');
-        if($q->num_rows() == 0){
+            ->get();
+        if($q->getNumRows() == 0){
             return null;
         }
-        $r = $q->result();
-        $q->free_result();
+        $r = $q->getResult();
+        $q->freeResult();
         return $r;
+    }
+
+    public function getListAccess()
+    {
+        $fields = $this->db->getFieldNames('roles');
+        $list = [];
+        foreach($fields as $field){
+            if($field != 'role_id' && $field != 'role_name'){
+                $list[] = $field;
+            }
+        }
+        return $list;
     }
 }

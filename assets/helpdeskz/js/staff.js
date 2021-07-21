@@ -168,7 +168,7 @@ function removeTopic(topID) {
         }
     });
 }
-
+// remove article
 function removeArticle(articleID) {
     Swal.fire({
         text: langKbArticleConfirmation,
@@ -187,7 +187,7 @@ function removeArticle(articleID) {
         }
     });
 }
-
+// remove agent
 function removeAgent(msgID) {
     Swal.fire({
         text: langAgentsConfirmation,
@@ -201,17 +201,42 @@ function removeAgent(msgID) {
             $("#agent_id").val(msgID);
             $('#manageForm').submit();
         } else if (result.dismiss === Swal.DismissReason.cancel) {
-            $('#department_id').val('');
+            $('#agent_id').val('');
             return false;
         }
     });
 }
+//remove role
 
+function removeRole(msgID) {
+    Swal.fire({
+        text: langRolesConfirmation,
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonText: langDelete,
+        cancelButtonText: langCancel,
+        cancelButtonColor: '#d33',
+    }).then((result) => {
+        if (result.value) {
+            $("#role_id").val(msgID);
+            $('#manageForm').submit();
+        } else if (result.dismiss === Swal.DismissReason.cancel) {
+            $('#role_id').val('');
+            return false;
+        }
+    });
+}
+// change email status
 function changeEmailStatus(email_id) {
     $('#email_id').val(email_id);
     $('#emailForm').submit();
 }
-
+// change role access status
+function changeRoleStatus(role_access) {
+    $('#role_access').val(role_access);
+    $('#roleForm').submit();
+}
+// remove email
 function removeEmail(email_id) {
     Swal.fire({
         text: langEmailConfirmation,
@@ -236,7 +261,7 @@ function setEmailDefault(email_id) {
     $('#email_action').val('set_default');
     $('#emailForm').submit();
 }
-
+// remove user
 function removeUser(msgID) {
     Swal.fire({
         text: langUserConfirmation,

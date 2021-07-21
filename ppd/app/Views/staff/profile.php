@@ -32,9 +32,6 @@ if(isset($success_msg)){
             <li class="nav-item">
                 <a class="nav-link" id="password-tab" data-toggle="tab" href="#password" role="tab" aria-selected="false"><?php echo lang('Admin.account.changePassword');?></a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" id="twofactor-tab" data-toggle="tab" href="#twofactor" role="tab"  aria-selected="false"><?php echo lang('Admin.twoFactor.title');?></a>
-            </li>
         </ul>
     </div>
     <div class="card-body">
@@ -69,26 +66,8 @@ if(isset($success_msg)){
                             <input type="text" name="fullname" value="<?php echo staff_data('fullname');?>" class="form-control">
                         </div>
                         <div class="form-group">
-                            <label><?php echo lang('Admin.account.timezone');?></label>
-                            <select name="timezone" class="form-control custom-select">
-                                <option value="">-- <?php echo lang('Admin.settings.defaultTimezone');?> --</option>
-                                <?php foreach (timezone_identifiers_list() as $k):?>
-                                    <?php if($k == staff_data('timezone')):?>
-                                        <option value="<?php echo $k;?>" selected><?php echo $k;?></option>
-                                    <?php else:?>
-                                        <option value="<?php echo $k;?>"><?php echo $k;?></option>
-                                    <?php endif;?>
-                                <?php endforeach;?>
-                            </select>
-                            <small class="text-muted form-text"><?php echo lang('Admin.account.timezoneDescription');?></small>
-                        </div>
-                        <div class="form-group">
                             <label><?php echo lang('Admin.form.email');?></label>
                             <input type="email" name="email" value="<?php echo staff_data('email');?>" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label><?php echo lang('Admin.form.signature');?></label>
-                            <textarea class="form-control" name="signature" id="messageBox"><?php echo staff_data('signature');?></textarea>
                         </div>
                         <div class="form-group">
                             <button class="btn btn-primary"><?php echo lang('Admin.form.save');?></button>
@@ -117,79 +96,6 @@ if(isset($success_msg)){
                 </div>
                 <div class="form-group">
                     <button class="btn btn-primary"><?php echo lang('Admin.form.save');?></button>
-                </div>
-                <?php echo form_close();?>
-            </div>
-            <div class="tab-pane fade" id="twofactor" role="tabpanel" aria-labelledby="twofactor-tab">
-                <div class="alert alert-info">
-                    <?php echo lang('Admin.twoFactor.info').' '.lang_replace('Admin.twoFactor.downloadApp', [
-                            '%1%' => '<a href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2" target="_blank">',
-                            '%2%' => '<a href="http://appstore.com/googleauthenticator" target="_blank">',
-                            '%0%' => '</a>'
-                        ]);?>
-                </div>
-
-
-                <?php echo form_open('',[],['do'=>'update_2FA']);?>
-                <div class="form-group">
-                    <label><?php echo lang('Admin.form.status');?>:</label>
-                    <?php echo staff_data('two_factor') != '' ? '<span class="badge badge-success">'.lang('Admin.form.enable').'</span>' : '<span class="badge badge-danger">'.lang('Admin.form.disable').'</span>';?>
-                </div>
-                <div class="row">
-                    <div class="col-lg-6">
-                        <?php
-                        if(staff_data('two_factor') == ''){
-                            echo form_hidden('action','activate');
-                            if(isset($twoFactorData)){
-                                ?>
-                                <div class="form-group">
-                                    <img src="<?php echo $twoFactorData['qr'];?>">
-                                </div>
-                                <div class="form-group">
-                                    <label><?php echo lang('Admin.twoFactor.secretKey');?></label>
-                                    <input type="text" value="<?php echo $twoFactorData['code'];?>" class="form-control" readonly>
-                                    <small class="form-text text-muted"><?php echo lang('Admin.twoFactor.backupCode');?></small>
-                                </div>
-                                <div class="form-group">
-                                    <label><?php echo lang('Admin.twoFactor.verificationCode');?></label>
-                                    <input type="text" name="code" placeholder="000000" class="form-control">
-                                    <small class="form-text text-muted"><?php echo lang('Admin.twoFactor.enter2FA');?></small>
-                                </div>
-                                <div class="form-group">
-                                    <label><?php echo lang('Admin.form.password');?></label>
-                                    <input type="password" name="password" class="form-control">
-                                </div>
-                                <div class="form-group">
-                                    <button class="btn btn-primary"><?php echo lang('Admin.twoFactor.activate');?></button>
-                                    <button class="btn btn-danger" name="retract" value="cancel"><?php echo lang('Admin.form.cancel');?></button>
-                                </div>
-                                <?php
-                            }else{
-                                ?>
-                                <div class="form-group">
-                                    <button class="btn btn-primary"><?php echo lang('Admin.twoFactor.activate');?></button>
-                                </div>
-                                <?php
-                            }
-                        }else{
-                            echo form_hidden('action','deactivate');
-                            ?>
-                            <div class="form-group">
-                                <label><?php echo lang('Admin.twoFactor.verificationCode');?></label>
-                                <input type="text" name="code" placeholder="000000" class="form-control" required>
-                                <small class="form-text text-muted"><?php echo lang('Admin.twoFactor.enter2FA');?></small>
-                            </div>
-                            <div class="form-group">
-                                <label><?php echo lang('Admin.form.password');?></label>
-                                <input type="password" name="password" class="form-control" required>
-                            </div>
-                            <div class="form-group">
-                                <button class="btn btn-primary"><?php echo lang('Admin.twoFactor.deactivate');?></button>
-                            </div>
-                            <?php
-                        }
-                        ?>
-                    </div>
                 </div>
                 <?php echo form_close();?>
             </div>

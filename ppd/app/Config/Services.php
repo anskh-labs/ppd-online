@@ -112,15 +112,5 @@ class Services extends \CodeIgniter\Config\Services
         }
         return new Api();
     }
-	//    public static function example($getShared = true)
-	//    {
-	//        if ($getShared)
-	//        {
-	//            return static::getSharedInstance('example');
-	//        }
-	//
-	//        return new \CodeIgniter\Example();
-	//    }
-
 
 }

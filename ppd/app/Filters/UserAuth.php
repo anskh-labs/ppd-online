@@ -22,11 +22,7 @@ class UserAuth implements FilterInterface
         if($settings->config('maintenance') == '1'){
             return redirect()->route('maintenance');
         }
-        if($client->isOnline()){
-            set_timezone(($client->getData('timezone') == '' ? $settings->config('timezone') : $client->getData('timezone')));
-        }else{
-            set_timezone($settings->config('timezone'));
-        }
+        set_timezone($settings->config('timezone'));
         if(is_array($arguments)){
             if($arguments[0] === 'visitor'){
                 if($client->isOnline()){

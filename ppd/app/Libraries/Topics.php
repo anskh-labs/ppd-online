@@ -26,7 +26,7 @@ class Topics
     {
         $q = $this->topicsModel->where('public', 1)
             ->get();
-        if ($q->resultID->num_rows == 0) {
+        if ($q->getNumRows() == 0) {
             return null;
         }
         $list = $q->getResult();
@@ -42,7 +42,13 @@ class Topics
     }
     public function getAll()
     {
-        return $this->topicsModel->findAll();
+        $result = $this->topicsModel->select('*')
+        ->orderBy('id', 'asc')
+        ->paginate(site_config('page_size'), 'default');
+        return [
+            'topics' => $result,
+            'pager' => $this->topicsModel->pager
+        ];
     }
 
     public function getByID($id)
@@ -78,7 +84,7 @@ class Topics
         $q = $this->ticketModel->select('id')
             ->where('topic', $id)
             ->get();
-        if($q->resultID->num_rows > 0){
+        if($q->getNumRows() > 0){
             foreach ($q->getResult() as $item){
                 $tickets->deleteTicket($item->id);
             }

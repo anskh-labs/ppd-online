@@ -119,7 +119,7 @@ class Tickets
             ->join('users as u', 'u.id=tickets.user_id', 'left')
             ->join('staff as s', 's.id=tickets.staff_id', 'left')
             ->get(1);
-        if ($q->resultID->num_rows == 0) {
+        if ($q->getNumRows() == 0) {
             return null;
         }
         return $q->getRow();
@@ -159,7 +159,7 @@ class Tickets
             //Send Mail to staff
             $q = $staffModel->where(['id' => $ticket->staff_id])
                 ->get(1);
-            if ($q->resultID->num_rows > 0) {
+            if ($q->getNumRows() > 0) {
                 foreach ($q->getResult() as $item) {
                     $emails->sendFromTemplate('staff_ticketnotification', [
                         '%staff_name%' => $item->fullname,
@@ -210,7 +210,7 @@ class Tickets
         $q = $this->messagesModel->where('ticket_id', $ticket_id)
             ->orderBy('date', 'asc')
             ->get(1);
-        if ($q->resultID->num_rows == 0) {
+        if ($q->getNumRows() == 0) {
             return null;
         }
         return $q->getRow();
@@ -223,7 +223,6 @@ class Tickets
             ->where('ticket_id', $ticket_id)
             ->orderBy('date', $settings->config('reply_order'))
             ->paginate($per_page, 'default');
-
         return [
             'result' => $result,
             'pager' => $this->messagesModel->pager
@@ -235,12 +234,22 @@ class Tickets
      * Canned Response
      * -------------------------
      */
+    public function getCannedAll()
+    {
+        $cannedModel = new CannedModel();
+        $result = $cannedModel->select('*')->orderBy('position', 'asc')
+            ->paginate(site_config('page_size'), 'default');
+        return [
+            'canned_list' => $result,
+            'pager' => $cannedModel->pager
+        ];
+    }
     public function getCannedList()
     {
         $cannedModel = new CannedModel();
         $q = $cannedModel->orderBy('position', 'asc')
             ->get();
-        if ($q->resultID->num_rows == 0) {
+        if ($q->getNumRows() == 0) {
             return null;
         }
         $r = $q->getResult();
@@ -298,7 +307,7 @@ class Tickets
         $q = $cannedModel->select('position')
             ->orderBy('position', 'desc')
             ->get(1);
-        if ($q->resultID->num_rows == 0) {
+        if ($q->getNumRows() == 0) {
             return 0;
         }
         return $q->getRow()->position;
@@ -468,7 +477,7 @@ class Tickets
                 }
                 break;
             case 'overdue':
-                if ($staff->getData('admin') != 1) {
+                if ($staff->getData('roleName') == 'operator') {
                     $this->ticketsModel
                         ->where('tickets.staff_id', $staff->getData('id'))
                         ->where('tickets.last_update<', time() - ($this->settings->config('overdue_time') * 60 * 60))
@@ -480,21 +489,21 @@ class Tickets
                 }
                 break;
             case 'answered':
-                if ($staff->getData('admin') != 1) {
+                if ($staff->getData('roleName') == 'operator') {
                     $this->ticketsModel->where('tickets.status', 2)->where('tickets.staff_id', $staff->getData('id'));
                 } else {
                     $this->ticketsModel->where('tickets.status', 2);
                 }
                 break;
             case 'closed':
-                if ($staff->getData('admin') != 1) {
+                if ($staff->getData('roleName') == 'operator') {
                     $this->ticketsModel->where('tickets.status', 5)->where('tickets.staff_id', $staff->getData('id'));
                 } else {
                     $this->ticketsModel->where('tickets.status', 5);
                 }
                 break;
             default:
-                if ($staff->getData('admin') != 1) {
+                if ($staff->getData('roleName') == 'operator') {
                     $this->ticketsModel
                         ->where('tickets.status', 1)
                         ->orWhere('tickets.status', 3)
@@ -547,7 +556,7 @@ class Tickets
         $staff = Services::staff();
         switch ($status) {
             case 'active':
-                if ($staff->getData('admin') != 1) {
+                if ($staff->getData('roleName') == 'operator') {
                     $total = $this->ticketsModel
                         ->where('tickets.staff_id', $staff->getData('id'))
                         ->where("(tickets.status = 1 or tickets.status = 3 or tickets.status = 4)")
@@ -559,7 +568,7 @@ class Tickets
                 }
                 break;
             case 'overdue':
-                if ($staff->getData('admin') != 1) {
+                if ($staff->getData('roleName') == 'operator') {
                     $total = $this->ticketsModel
                         ->where('tickets.staff_id', $staff->getData('id'))
                         ->where("(tickets.status = 1 or tickets.status = 3 or tickets.status = 4)")
@@ -573,7 +582,7 @@ class Tickets
                 }
                 break;
             case 'answered':
-                if ($staff->getData('admin') != 1) {
+                if ($staff->getData('roleName') == 'operator') {
                     $total = $this->ticketsModel
                         ->where('tickets.staff_id', $staff->getData('id'))
                         ->where('status', 2)
@@ -585,7 +594,7 @@ class Tickets
                 }
                 break;
             case 'closed':
-                if ($staff->getData('admin') != 1) {
+                if ($staff->getData('roleName') == 'operator') {
                     $total = $this->ticketsModel
                         ->where('tickets.staff_id', $staff->getData('id'))
                         ->where('status', 5)
@@ -632,7 +641,7 @@ class Tickets
             ->join('staff', 'staff.id=ticket_notes.staff_id')
             ->where('ticket_id', $ticket_id)
             ->get();
-        if ($q->resultID->num_rows == 0) {
+        if ($q->getNumRows() == 0) {
             return null;
         }
         $r = $q->getResult();

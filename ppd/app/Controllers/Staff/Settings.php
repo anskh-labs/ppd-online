@@ -17,10 +17,6 @@ class Settings extends BaseController
 {
     public function general()
     {
-        if($this->staff->getData('admin') != 1){
-            return redirect()->route('staff_dashboard');
-        }
-
         if($this->request->getMethod() == 'post'){
             
             if($this->request->getPost('action') == 'deleteLogo'){
@@ -125,10 +121,6 @@ class Settings extends BaseController
 
     public function security()
     {
-        if($this->staff->getData('admin') != 1){
-            return redirect()->route('staff_dashboard');
-        }
-
         if($this->request->getPost('do') == 'submit'){
             $validation = Services::validation();
             $validation->setRule('login_attempt','Maximum number of login attempts','required|is_natural_no_zero',[
@@ -161,10 +153,6 @@ class Settings extends BaseController
 
     public function tickets()
     {
-        if($this->staff->getData('admin') != 1){
-            return redirect()->route('staff_dashboard');
-        }
-
         if($this->request->getPost('do') == 'submit'){
             $validation = Services::validation();
             $validation->setRule('reply_order',lang('Admin.settings.displayOrderReplies'),'required|in_list[asc,desc]');
@@ -223,10 +211,6 @@ class Settings extends BaseController
 
     public function kb()
     {
-        if($this->staff->getData('admin') != 1){
-            return redirect()->route('staff_dashboard');
-        }
-
         if($this->request->getPost('do') == 'submit'){
             $validation = Services::validation();
             $validation->setRule('kb_articles',lang('Admin.settings.articlesUnderCategory'),'required|is_natural_no_zero');
@@ -279,10 +263,6 @@ class Settings extends BaseController
 
     public function emailTemplates()
     {
-        if($this->staff->getData('admin') != 1){
-            return redirect()->route('staff_dashboard');
-        }
-
         $emailsLib = new Emails();
         if($this->request->getPost('action') == 'change_status'){
             if($template = $emailsLib->getTemplate($this->request->getPost('email_id'))){
@@ -303,10 +283,6 @@ class Settings extends BaseController
 
     public function emailTemplatesEdit($email_id)
     {
-        if($this->staff->getData('admin') != 1){
-            return redirect()->route('staff_dashboard');
-        }
-
         $emailLib = new Emails();
         if(!$template = $emailLib->getTemplate($email_id)){
             return redirect()->route('staff_email_templates');
@@ -337,10 +313,6 @@ class Settings extends BaseController
 
     public function emails()
     {
-        if($this->staff->getData('admin') != 1){
-            return redirect()->route('staff_dashboard');
-        }
-
         $emailsLib = new Emails();
         if($this->request->getPost('action') == 'set_default')
         {
@@ -364,10 +336,6 @@ class Settings extends BaseController
 
     public function emailsCreate()
     {
-        if($this->staff->getData('admin') != 1){
-            return redirect()->route('staff_dashboard');
-        }
-
         $emailsLib = new Emails();
         if($this->request->getPost('do') == 'submit')
         {
@@ -413,9 +381,6 @@ class Settings extends BaseController
 
     public function emailsEdit($email_id)
     {
-        if($this->staff->getData('admin') != 1){
-            return redirect()->route('staff_dashboard');
-        }
 
         $emailsLib = new Emails();
         if(!$email = $emailsLib->getByID($email_id)){
@@ -476,9 +441,6 @@ class Settings extends BaseController
 
     public function api()
     {
-        if($this->staff->getData('admin') != 1){
-            return redirect()->route('staff_dashboard');
-        }
         $api = Services::api();
 
         if ($this->request->getPost('do') == 'remove'){
@@ -503,11 +465,6 @@ class Settings extends BaseController
 
     public function apiCreate()
     {
-        if($this->staff->getData('admin') != 1){
-            return redirect()->route('staff_dashboard');
-        }
-
-
         $api = Services::api();
         if($this->request->getPost('do') == 'submit')
         {
@@ -547,9 +504,6 @@ class Settings extends BaseController
 
     public function apiEdit($api_id)
     {
-        if($this->staff->getData('admin') != 1){
-            return redirect()->route('staff_dashboard');
-        }
         $api = Services::api();
         if(!$api_info = $api->getRow(['id'=>$api_id])){
             return redirect()->route('staff_api');

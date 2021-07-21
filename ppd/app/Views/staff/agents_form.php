@@ -1,6 +1,9 @@
 <?php
 /**
  * @var $this \CodeIgniter\View\View
+ * 
+ * {locale}/staff/agents/agents/edit/{id}
+ * {locale}/staff/agents/agents/new
  */
 $this->extend('staff/template');
 $this->section('content');
@@ -8,7 +11,7 @@ $this->section('content');
     <!-- Page Header -->
     <div class="page-header row no-gutters py-4">
         <div class="col-12 col-sm-4 text-center text-sm-left mb-0">
-            <span class="text-uppercase page-subtitle"><?php echo lang('Admin.agents.menu');?></span>
+            <span class="text-uppercase page-subtitle"><?php echo lang('Admin.agents.menu'); ?></span>
             <h3 class="page-title"><?php echo isset($agent) ? lang('Admin.agents.edit') : lang('Admin.agents.new');?></h3>
         </div>
     </div>
@@ -48,16 +51,16 @@ if(isset($success_msg)){
                 <?php endif;?>
             </div>
             <div class="form-group">
-                <label><?php echo lang('Admin.form.type');?></label>
-                <select name="admin" class="form-control custom-select">
+                <label><?php echo lang('Admin.form.role');?></label>
+                <select name="role" class="form-control custom-select">
                     <?php
-                    $default = set_value('admin', (isset($agent) ? $agent->admin : 0));
-
-                    foreach (['0' => lang('Admin.agents.agent'),'1' => lang('Admin.agents.administrator')] as $k => $v){
-                        if($k == $default){
-                            echo '<option value="'.$k.'" selected>'.$v.'</option>';
-                        }else{
-                            echo '<option value="'.$k.'">'.$v.'</option>';
+                    if (isset($roles)) {
+                        foreach ($roles as $item) {
+                            if (isset($agent) && $item->role_id == $agent->role) {
+                                echo '<option value="' . $item->role_id . '" selected>' . $item->role_name . '</option>';
+                            } else {
+                                echo '<option value="' . $item->role_id . '">' . $item->role_name . '</option>';
+                            }
                         }
                     }
                     ?>

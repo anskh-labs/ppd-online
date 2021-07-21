@@ -3,7 +3,7 @@
 		<ul class="m-0">
 		<?php foreach ($errors as $error) : ?>
 			<li><?= esc($error) ?></li>
-		<?php endforeach ?>
+		<?php endforeach; ?>
 		</ul>
 	</div>
-<?php endif ?>
+<?php endif; ?>

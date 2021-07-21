@@ -43,16 +43,12 @@ echo form_close();
                 </tr>
                 </thead>
                 <tbody>
-                <?php
-                if(!isset($emailsList)){
-                    ?>
+                <?php if(!isset($emailsList)): ?>
                     <tr>
                         <td colspan="5"><?php echo lang('records_not_found');?></td>
                     </tr>
-                    <?php
-                }else{
-                    foreach ($emailsList as $item){
-                        ?>
+                <?php else : ?>
+                    <?php foreach ($emailsList as $item) : ?>
                         <tr>
                             <td>
                                 <a href="<?php echo site_url(route_to('staff_email_templates_edit', $item->id));?>"><?php echo $item->name;?></a>
@@ -67,10 +63,8 @@ echo form_close();
                                 </div>
                             </td>
                         </tr>
-                        <?php
-                    }
-                }
-                ?>
+                     <?php endforeach; ?>
+                <?php endif; ?>
                 </tbody>
             </table>
         </div>
