@@ -132,15 +132,15 @@ $page_controller = isset($page_controller) ? $page_controller : '';
                 <div class="col-lg-4">
                     <h6 class="mb-3 text-white" style="text-transform:uppercase;">Pelayanan Statistik Terpadu (PST)</h6>
                     <p>
-                        Jl. Jenderal Sudirman Bangkinang
+                        Jl. bla bla bla
                     </p>
                     <div class="row mb-1">
                         <div class="col-auto pr-0"><i class="fa fa-phone"></i></div>
-                        <div class="col">(0762) 323443</div>
+                        <div class="col">(000) 123456</div>
                     </div>
                     <div class="row mb-1">
                         <div class="col-auto pr-0"><i class="fa fa-envelope"></i></div>
-                        <div class="col">ipds1406@bps.go.id</div>
+                        <div class="col">pst@bps.go.id</div>
                     </div>
                     <div class="row mb-3">
                         <div class="col-auto pr-0"><i class="fa fa-map-marked"></i></div>
