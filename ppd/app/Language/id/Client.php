@@ -6,7 +6,7 @@ return [
         'title' => 'Katalog Informasi',
         'menu' => 'Katalog Informasi',
         'howCanWeHelpYou1' => 'Selamat Datang di Pusat Permintaan Data ',
-        'howCanWeHelpYou2' => 'BPS Kabupaten Rokan Hulu',
+        'howCanWeHelpYou2' => 'BPS Kabupaten Kampar',
         'search' => 'Cari dalam katalog informasi',
         'moreTopics' => 'Topik lainnya',
         'mostPopular' => 'Artikel terpopuler',
@@ -20,7 +20,7 @@ return [
         'title' => 'Masuk ke %site_name%',
         'button' => 'Masuk',
         'guestBook' => 'Buku Tamu Pengguna Baru',
-        'guestBookDesc' => 'Silahkan isi buku tamu di bawah ini untuk mendaftar di Pusat Permintaan Data BPS Kabupaten Rokan Hulu.',
+        'guestBookDesc' => 'Silahkan isi buku tamu di bawah ini untuk mendaftar di Pusat Permintaan Data BPS Kabupaten Kampar.',
         'passwordSent' => 'Kami telah mengirimkan email dengan kata sandi baru ke alamat yang diberikan',
         'agent1' => 'Saya Agen',
         'agent2' => 'Login Disini',
@@ -93,7 +93,7 @@ return [
         'next' => 'Selanjutnya',
         'phone' => 'Nomor HP',
         'location' => 'Domisili',
-        'rokanhulu' => 'Kabupaten Rokan Hulu',
+        'kampar' => 'Kabupaten Kampar',
         'other' => 'Lainnya',
         'message' => 'Deskripsi',
         'captcha' => 'Kode keamanan'
@@ -130,6 +130,14 @@ return [
         'title' => 'Halaman tidak ditemukan - 404',
         'body' => 'Ups, halaman mungkin telah dihapus atau untuk sementara tidak tersedia.',
     ],
+    '403' => [
+        'title' => 'Anda tidak memiliki akses ke halaman ini - 403',
+        'body' => 'Ups, anda tidak boleh mengakses yang bukan haknya.',
+    ],
+    '500' => [
+        'title' => 'Opps terjadi kesalahan - 500',
+        'body' => 'Ups, terjadi kesalahan, silahkan coba beberapa saat lagi.',
+    ],
     'menu' => [
         'home' => 'Beranda',
         'login' => 'Masuk',
@@ -140,9 +148,9 @@ return [
     ],
     'site' => [
         'hello' => 'Selamat Datang di PPD-Online',
-        'description' => 'Hai Sahabat Data, terimakasih telah mengunjungi layanan PPD-Online. PPD-Online merupakan pusat permintaan data secara elektronik yang dikelola oleh BPS kabupaten Rokan Hulu. 
+        'description' => 'Hai Sahabat Data, terimakasih telah mengunjungi layanan PPD-Online. PPD-Online merupakan pusat permintaan data secara elektronik yang dikelola oleh BPS kabupaten Kampar. 
         Untuk menggunakan layanan yang tersedia silahkan masuk terlebih dahulu. Pilih tautan %newUser% jika Sahabat Data belum pernah masuk aplikasi ini sebelumnya, jika sudah pernah maka pilih
         %registeredUser%.',
-        'company' => 'Badan Pusat Statistik Kabupaten Rokan Hulu'
+        'company' => 'Badan Pusat Statistik Kabupaten Kampar'
     ]
 ];

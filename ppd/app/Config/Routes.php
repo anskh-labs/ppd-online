@@ -19,7 +19,6 @@ $routes->setDefaultNamespace('App\Controllers');
 $routes->setDefaultController('Home');
 $routes->setDefaultMethod('index');
 $routes->setTranslateURIDashes(false);
-$routes->set404Override('App\Controllers\Kb::error404');
 $routes->setAutoRoute(true);
 
 /**
@@ -32,6 +31,18 @@ $routes->setAutoRoute(true);
 // route since we don't have to scan directories.
 $routes->add('{locale}/maintenance-mode', 'Pages::maintenance',[
     'as' => 'maintenance'
+]);
+#404
+$routes->add('{locale}/error-404', 'Kb::error404', [
+    'as' => 'error-404'
+]);
+#403
+$routes->add('{locale}/error-403', 'Kb::error403', [
+    'as' => 'error-403'
+]);
+#500
+$routes->add('{locale}/error-500', 'Kb::error500', [
+    'as' => 'error-500'
 ]);
 // tambahan route untuk meredirect ke bahasa default
 $routes->add('/',function (){

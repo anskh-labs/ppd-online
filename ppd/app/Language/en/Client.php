@@ -6,7 +6,7 @@ return [
         'title' => 'Knowledge Base',
         'menu' => 'Knowledge base',
         'howCanWeHelpYou1' => 'Welcome To PPD Online ',
-        'howCanWeHelpYou2' => 'BPS Kabupaten Rokan Hulu',
+        'howCanWeHelpYou2' => 'BPS Kabupaten Kampar',
         'search' => 'Search in knowledge base',
         'moreTopics' => 'More Topics',
         'mostPopular' => 'Most popular articles',
@@ -20,7 +20,7 @@ return [
         'title' => 'Sign in to %site_name%',
         'button' => 'Sign In',
         'guestBook' => 'Guest Book for New Users',
-        'guestBookDesc' => 'Please fill in this guest book forms for registration to PPD Online BPS-Statistics of Rokan Hulu Regency.',
+        'guestBookDesc' => 'Please fill in this guest book forms for registration to PPD Online BPS-Statistics of Kampar Regency.',
         'passwordSent' => 'We have sent an email with a new password to the address provided',
         'agent1' => 'I\'m an Agent',
         'agent2' => 'Login Here',
@@ -93,7 +93,7 @@ return [
         'next' => 'Next',
         'phone' => 'Phone Number',
         'location' => 'Location',
-        'rokanhulu'=>'Rokan Hulu Regency',
+        'kampar'=>'Kampar Regency',
         'other' => 'Other',
         'message' => 'Description',
         'captcha' => 'Security code'
@@ -130,6 +130,14 @@ return [
         'title' => 'Page not found - 404',
         'body' => 'Oops, the page might have been removed or is temporarily unavailable.',
     ],
+    '403' => [
+        'title' => 'You dont have permission to access this page - 403',
+        'body' => 'Ups, you shall not pass!.',
+    ],
+    '500' => [
+        'title' => 'Opps something went wrong - 500',
+        'body' => 'Ups, something went wrong, please try again next time.',
+    ],
     'menu' => [
         'home' => 'Home',
         'login' => 'Login',
@@ -140,10 +148,10 @@ return [
     ],
     'site' => [
         'hello' => 'Welcome to PPD-Online',
-        'description' => 'PPD-Online is integrated data request provided by Statistics of Rokan Hulu Regency. 
+        'description' => 'PPD-Online is integrated data request provided by Statistics of Kampar Regency. 
         Select %newUser% button if data user has never entered this application before, select
         %registeredUser% if ever.
         ',
-        'company' => 'Statistics of Rokan Hulu Regency'
+        'company' => 'Statistics of Kampar Regency'
     ]
 ];

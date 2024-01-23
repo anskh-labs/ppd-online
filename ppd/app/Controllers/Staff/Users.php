@@ -127,7 +127,7 @@ class Users extends BaseController
                     'fullname' => esc($this->request->getPost('fullname')),
                     'email' => esc($this->request->getPost('email')),
                     'phone' => esc($this->request->getPost('phone')),
-                    'in_rokanhulu' => $this->request->getPost('location'),
+                    'in_wilayah' => $this->request->getPost('location'),
                     'status' => $this->request->getPost('status')
                 ], $user->id);
                 $this->session->setFlashdata('form_success', lang('Admin.users.accountUpdated'));

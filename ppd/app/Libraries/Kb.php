@@ -472,7 +472,7 @@ class Kb
             ->orderBy('articles.last_update','desc')
             ->orderBy('articles.date','desc')
             ->join('category as c','c.id=articles.category')
-            ->paginate($settings->config('page_size'));
+            ->paginate(intval($settings->config('page_size')));
         return [
             'result' => $result,
             'pager' => $this->articlesModel->pager

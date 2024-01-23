@@ -32,7 +32,7 @@ class Attachments
         $request = Services::request();
         $settings = Services::settings();
         $files = array();
-        for ($i = 0; $i < $settings->config('kb_attachment_number'); $i++) {
+        for ($i = 0; $i < intval($settings->config('kb_attachment_number')); $i++) {
             if ($attachment = $request->getFile('attachment.' . $i)) {
                 if ($attachment->isValid() && !$attachment->hasMoved()) {
                     $name = $attachment->getName();
@@ -59,7 +59,7 @@ class Attachments
         $request = Services::request();
         $settings = Services::settings();
         $files = array();
-        for ($i = 0; $i < $settings->config('ticket_attachment_number'); $i++) {
+        for ($i = 0; $i < intval($settings->config('ticket_attachment_number')); $i++) {
             if ($attachment = $request->getFile('attachment.' . $i)) {
                 if ($attachment->isValid() && !$attachment->hasMoved()) {
                     $name = $attachment->getName();

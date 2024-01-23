@@ -332,7 +332,7 @@ return [
         'category' => 'Category',
         'topicName' => 'Topic name',
         'location' => 'Location',
-        'rokanhulu'=>'Rokan Hulu Regency',
+        'kampar'=>'Kampar Regency',
         'other' => 'Other',
         'date' => 'Calendar date',
         'role' =>'Role'

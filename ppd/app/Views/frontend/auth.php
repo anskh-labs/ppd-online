@@ -16,8 +16,7 @@ $this->section('content');
         <div id="slideCarousel" class="carousel slide" data-ride="carousel">
 
             <ol class="carousel-indicators">
-                <li data-target="#slideCarousel" data-slide-to="0" class="active"></li>
-                <li data-target="#slideCarousel" data-slide-to="1" class=""></li>
+                <li data-target="#slideCarousel" data-slide-to="1" class="active"></li>
                 <li data-target="#slideCarousel" data-slide-to="2" class=""></li>
                 <li data-target="#slideCarousel" data-slide-to="3" class=""></li>
                 <li data-target="#slideCarousel" data-slide-to="4" class=""></li>
@@ -25,11 +24,6 @@ $this->section('content');
 
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <a href="<?= base_url('assets/helpdeskz/images/slider/silastik_permintaan_low.jpg') ?>">
-                        <img class="d-block w-100" src="<?= base_url('assets/helpdeskz/images/slider/1. Apa itu PPD-online.png') ?>" alt="slide-1">
-                    </a>
-                </div>
-                <div class="carousel-item">
                     <a href="<?= base_url('assets/helpdeskz/images/slider/keuntungan_silastik_low.jpg') ?>">
                         <img class="d-block w-100" src="<?= base_url('assets/helpdeskz/images/slider/2. pelayanan di PPD-Online.png') ?>" alt="slide-2">
                     </a>

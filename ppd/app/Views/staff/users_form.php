@@ -45,8 +45,8 @@ if (isset($success_msg)) {
             <label><?php echo lang('Admin.form.location'); ?></label>
             <select name="location" class="form-group custom-select" id="location">
                 <?php
-                $default = set_value('location', (isset($user) ? $user->in_rokanhulu : 0));
-                foreach ([0 => lang('Admin.form.rokanhulu'), 1 => lang('Admin.form.other')] as $k => $v) {
+                $default = set_value('location', (isset($user) ? $user->in_satker : 0));
+                foreach ([0 => lang('Admin.form.kampar'), 1 => lang('Admin.form.other')] as $k => $v) {
                     if ($default == $k) {
                         echo '<option value="' . $k . '" selected>' . $v . '</option>';
                     } else {

@@ -134,7 +134,7 @@ class Client
             'email' => esc($email),
             'registration' => time(),
             'phone' => esc($phone),
-            'in_rokanhulu' => esc($location)
+            'in_wilayah' => esc($location)
         ]);
         $this->usersModel->protect(true);
         $client_id = $this->usersModel->getInsertID();
@@ -158,7 +158,7 @@ class Client
             'email' => esc($email),
             'registration' => time(),
             'phone' => esc($phone),
-            'in_rokanhulu' => esc($location)
+            'in_wilayah' => esc($location)
         ]);
         $this->usersModel->protect(true);
         $client_id = $this->usersModel->getInsertID();

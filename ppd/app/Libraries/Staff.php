@@ -126,7 +126,7 @@ class Staff
         $ip_address = is_null($ip_address) ? $request->getIPAddress() : $ip_address;
         $builder = $this->db->table('login_attempt');
         $builder->delete([
-                'date <' => time()-(60*$settings->config('login_attempt_minutes'))
+                'date <' => time()-(60*intval($settings->config('login_attempt_minutes')))
             ]);
         //Verify
         $q = $builder->select('attempts, date')
@@ -136,7 +136,7 @@ class Staff
             return false;
         }
         $result = $q->getRow();
-        if($settings->config('login_attempt') > 0 && $result->attempts >= $settings->config('login_attempt')){
+        if(intval($settings->config('login_attempt')) > 0 && $result->attempts >= intval($settings->config('login_attempt'))){
             return true;
         }
         return false;
@@ -145,7 +145,7 @@ class Staff
     public function addLoginAttempt($ip_address=null)
     {
         $settings = Services::settings();
-        if($settings->config('login_attempt') == 0){
+        if(intval($settings->config('login_attempt')) == 0){
             return '0';
         }
         $request = Services::request();

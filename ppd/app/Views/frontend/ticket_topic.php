@@ -58,18 +58,17 @@ $this->section('content');
                     </label>
 
                     <?php
-                    if ($topics = getTopics()) {
+                    if ($topics = getTopics()["topics"]) {
                         foreach ($topics as $item) {
                     ?>
                             <div class="custom-control custom-radio">
                                 <input type="radio" id="topic<?php echo $item->id; ?>" name="topic" value="<?php echo $item->id; ?>" class="custom-control-input">
-                                <label class="-control-label" for="topic<?php echo $item->id; ?>"><?php echo $item->name; ?></label>
+                                <label class="custom-control-label" for="topic<?php echo $item->id; ?>"><?php echo $item->name; ?></label>
                             </div>
                     <?php
                         }
                     }
                     ?>
-
                 </div>
             </div>
         </div>

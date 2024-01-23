@@ -20,10 +20,10 @@ class Helpdesk extends BaseConfig
     const DB_USER = 'root';
 
     #Database password
-    const DB_PASSWORD = 'root';
+    const DB_PASSWORD = '';
 
     #Database name
-    const DB_NAME = 'ppd';
+    const DB_NAME = 'ppd-online';
 
     #Database table prefix
     const DB_PREFIX = 'ppd_';
@@ -40,6 +40,6 @@ class Helpdesk extends BaseConfig
     #Default helpdesk language
     const DEFAULT_LANG = 'id';
 
-    #URI name to access to staff panel. Ex: staff / then you can access in http://helpdesk.com/staff
+    #URI name to access to staff panel. Ex: staff / then you can access in localhost/ppd-online/{locale}/staff
     const STAFF_URI = 'staff';
 }

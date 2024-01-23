@@ -115,36 +115,36 @@ $page_controller = isset($page_controller) ? $page_controller : '';
                         <div class="image mr-3"><img src="<?= base_url('assets/helpdeskz/images/logo/bps.png') ?>" alt="Logo BPS" height="40"></div>
                         <div class="text">
                             <h6 class="m-0 text-white">BADAN PUSAT STATISTIK</h6>
-                            <div class="m-0 text-white">KABUPATEN ROKAN HULU</div>
+                            <div class="m-0 text-white">KABUPATEN KAMPAR</div>
                             <div></div>
                         </div>
                     </div>
                     <div class="row mb-1">
-                        <div class="col"><a href="https://www.facebook.com/bpskabrohul" target="_blank"><i class="fab fa-facebook-f"></i><span class="pl-1">bpskabrohul</span></a></div>
+                        <div class="col"><a href="https://www.facebook.com/kabupaten.bpskampar.3" target="_blank"><i class="fab fa-facebook-f"></i><span class="pl-1">Bps Kabupaten Kampar</span></a></div>
                     </div>
                     <div class="row mb-1">
-                        <div class="col"><a href="https://www.instagram.com/bpskabrohul/" target="_blank"><i class="fab fa-instagram"></i><span class="pl-1">bpskabrohul</span></a></div>
+                        <div class="col"><a href="https://www.instagram.com/bps_kampar/" target="_blank"><i class="fab fa-instagram"></i><span class="pl-1">bps_kampar</span></a></div>
                     </div>
                     <div class="row mb-3">
-                        <div class="col"><a href="https://rohulkab.bps.go.id" target="_blank"><i class="fab fa-chrome"></i><span class="pl-1">rohulkab.bps.go.id</span></a></div>
+                        <div class="col"><a href="https://kamparkab.bps.go.id" target="_blank"><i class="fab fa-chrome"></i><span class="pl-1">kamparkab.bps.go.id</span></a></div>
                     </div>
                 </div>
                 <div class="col-lg-4">
                     <h6 class="mb-3 text-white" style="text-transform:uppercase;">Pelayanan Statistik Terpadu (PST)</h6>
                     <p>
-                        Jl. Kelompok Tani No. 7 Pasir Pengaraian
+                        Jl. Jenderal Sudirman Bangkinang
                     </p>
                     <div class="row mb-1">
                         <div class="col-auto pr-0"><i class="fa fa-phone"></i></div>
-                        <div class="col">(62-762) 7392150</div>
+                        <div class="col">(0762) 323443</div>
                     </div>
                     <div class="row mb-1">
                         <div class="col-auto pr-0"><i class="fa fa-envelope"></i></div>
-                        <div class="col">pst1407@bps.go.id</div>
+                        <div class="col">ipds1406@bps.go.id</div>
                     </div>
                     <div class="row mb-3">
                         <div class="col-auto pr-0"><i class="fa fa-map-marked"></i></div>
-                        <div class="col"><a href="https://plus.codes/6PG2V8R3+27" target="_blank">V8R3+27 Pematang Berangan, Kabupaten Rokan Hulu, Riau</a></div>
+                        <div class="col"><a href="https://maps.google.com/?q=82P9%2B39" target="_blank">82P9+39 Langgini, Kabupaten Kampar, Riau</a></div>
                     </div>
                 </div>
                 <div class="col-lg-4">
@@ -232,13 +232,13 @@ $page_controller = isset($page_controller) ? $page_controller : '';
                     <ol type="A">
                         <li>Layanan <i>Offline</i>
                             <ol type="1" class="ml-3">
-                                <li>Pengguna layanan datang langsung ke Unit Pelayanan Statistik Terpadu (PST) BPS Kab. Rokan Hulu</li>
+                                <li>Pengguna layanan datang langsung ke Unit Pelayanan Statistik Terpadu (PST) BPS Kab. Kampar</li>
                                 <li>Pengguna layanan mengisi bukutamu</li>
                             </ol>
                         </li>
                         <li>Layanan <i>Online</i>
                             <ol type="1" class="ml-3">
-                                <li>Pengguna layanan mengunjungi layanan secara <i>online</i> dengan alamat https://webapps.bps.go.id/rokanhulukab/ppd-online/</li>
+                                <li>Pengguna layanan mengunjungi layanan secara <i>online</i> dengan alamat https://kampar.web.bps.go.id/ppd-online/</li>
                                 <li>Pengguna layanan memiliki nomor HP dan alamat email</li>
                                 <li>Pengguna layanan mengisi bukutamu elektronik</li>
                             </ol>
@@ -248,7 +248,7 @@ $page_controller = isset($page_controller) ? $page_controller : '';
                     <ol type="A">
                         <li>Layanan <i>Offline</i>
                             <ol type="1" class="ml-3">
-                                <li>Pengguna layanan datang langsung ke Unit Pelayanan Statistik Terpadu (PST) BPS Kab. Rokan Hulu</li>
+                                <li>Pengguna layanan datang langsung ke Unit Pelayanan Statistik Terpadu (PST) BPS Kab. Kampar</li>
                                 <li>Pengguna layanan menemui petugas PST</li>
                                 <li>Pengguna layanan mengisi bukutamu</li>
                                 <li>Pengguna layanan menjelaskan data yang dibutuhkan</li>
@@ -258,7 +258,7 @@ $page_controller = isset($page_controller) ? $page_controller : '';
                         </li>
                         <li>Layanan <i>Online</i>
                             <ol type="1" class="ml-3">
-                                <li>Pengguna layanan mengunjungi layanan secara <i>online</i> dengan alamat https://webapps.bps.go.id/rokanhulukab/ppd-online/</li>
+                                <li>Pengguna layanan mengunjungi layanan secara <i>online</i> dengan alamat https://kampar.web.bps.go.id/ppd-online/</li>
                                 <li>Pengguna layanan mengisi bukutamu</li>
                                 <li>Pengguna layanan membuat tiket permintaan data</li>
                                 <li>Petugas memproses permintaan data</li>

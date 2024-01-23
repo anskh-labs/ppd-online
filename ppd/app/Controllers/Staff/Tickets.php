@@ -102,7 +102,7 @@ class Tickets extends BaseController
             $this->session->setFlashdata('ticket_error', lang('Admin.error.ticketNotFound'));
             return redirect()->route('staff_tickets');
         }
-        if ($this->staff->getData('roleName') != 'supervisor' && $this->staff->getData('roleName') != 'admin') {
+        if ($this->staff->getData('role_name') != 'supervisor' && $this->staff->getData('role_name') != 'admin') {
             if ($ticket->staff_id !== $this->staff->getData('id')) {
                 $this->session->setFlashdata('ticket_error', lang('Admin.error.ticketNotPermission'));
                 return redirect()->route('staff_tickets');
@@ -228,7 +228,7 @@ class Tickets extends BaseController
                 $error_msg = lang('Admin.tickets.invalidRequest');
             } elseif (!$note = $tickets->getNote($this->request->getPost('note_id'))) {
                 $error_msg = lang('Admin.tickets.invalidRequest');
-            } elseif ($this->staff->getData('roleName') == 'admin' || $this->staff->getData('roleName') == 'supervisor'|| $this->staff->getData('id') == $note->staff_id) {
+            } elseif ($this->staff->getData('role_name') == 'admin' || $this->staff->getData('role_name') == 'supervisor'|| $this->staff->getData('id') == $note->staff_id) {
                 $tickets->deleteNote($ticket->id, $this->request->getPost('note_id'));
                 $this->session->setFlashdata('ticket_update', lang('Admin.tickets.noteRemoved'));
                 return redirect()->to(current_url());
@@ -244,7 +244,7 @@ class Tickets extends BaseController
                 $error_msg = lang('Admin.tickets.enterNote');
             } elseif (!$note = $tickets->getNote($this->request->getPost('note_id'))) {
                 $error_msg = lang('Admin.tickets.invalidRequest');
-            } elseif ($this->staff->getData('roleName') == 'admin' || $this->staff->getData('roleName') == 'supervisor' || $this->staff->getData('id') == $note->staff_id) {
+            } elseif ($this->staff->getData('role_name') == 'admin' || $this->staff->getData('role_name') == 'supervisor' || $this->staff->getData('id') == $note->staff_id) {
                 $tickets->updateNote($this->request->getPost('new_note'), $note->id);
                 $this->session->setFlashdata('ticket_update', lang('Admin.tickets.noteUpdated'));
                 return redirect()->to(current_url());
@@ -383,7 +383,7 @@ class Tickets extends BaseController
         if ($this->request->getPost('do') == 'remove') {
             if (!$canned = $tickets->getCannedResponse($this->request->getPost('msgID'))) {
                 $error_msg = lang('Admin.error.invalidCannedResponse');
-            } elseif (($this->staff->getData('roleName') != 'admin' || $this->staff->getData('roleName') != 'supervisor') && $canned->staff_id != $this->staff->getData('id')) {
+            } elseif (($this->staff->getData('role_name') != 'admin' || $this->staff->getData('role_name') != 'supervisor') && $canned->staff_id != $this->staff->getData('id')) {
                 $error_msg = lang('Admin.error.invalidCannedResponse');
             } else {
                 $tickets->deleteCanned($canned->id);

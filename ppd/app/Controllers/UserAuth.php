@@ -135,7 +135,7 @@ class UserAuth extends BaseController
                         'fullname' => $this->request->getPost('fullname'),
                         'email' => $this->request->getPost('email'),
                         'phone' => $this->request->getPost('phone'),
-                        'in_rokanhulu' => $this->request->getPost('location')
+                        'in_wilayah' => $this->request->getPost('location')
                     ],
                     $user_id
                 );

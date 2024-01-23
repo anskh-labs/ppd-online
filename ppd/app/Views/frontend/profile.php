@@ -72,8 +72,8 @@ $this->section('content');
             <label><?php echo lang('Client.form.location'); ?></label>
             <select name="location" class="form-group custom-select" id="location">
                 <?php
-                $default = set_value('location', client_data('in_rokanhulu'));
-                foreach ([0 => lang('Client.form.rokanhulu'), 1 => lang('Client.form.other')] as $k => $v) {
+                $default = set_value('location', client_data('in_satker'));
+                foreach ([0 => lang('Client.form.kampar'), 1 => lang('Client.form.other')] as $k => $v) {
                     if ($default == $k) {
                         echo '<option value="' . $k . '" selected>' . $v . '</option>';
                     } else {

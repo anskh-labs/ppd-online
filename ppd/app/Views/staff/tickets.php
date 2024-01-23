@@ -4,7 +4,7 @@
  */
 $this->extend('staff/template');
 $this->section('content');
-$request = \CodeIgniter\Services::request();
+$request = \Config\Services::request();
 ?>
     <!-- Page Header -->
     <div class="page-header row no-gutters py-4">

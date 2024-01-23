@@ -332,7 +332,7 @@ return [
         'category' => 'Kategori',
         'topicName' => 'Nama topik',
         'location' => 'Domisili',
-        'rokanhulu' => 'Kabupaten Rokan Hulu',
+        'kampar' => 'Kabupaten Kampar',
         'other' => 'Lainnya',
         'date' => 'Tanggal kalender',
         'role' => 'Hak akses'

@@ -218,7 +218,7 @@ class Tickets
     public function getMessages($ticket_id, $select = '*')
     {
         $settings = Services::settings();
-        $per_page = $settings->config('tickets_replies');
+        $per_page = intval($settings->config('tickets_replies'));
         $result = $this->messagesModel->select($select)
             ->where('ticket_id', $ticket_id)
             ->orderBy('date', $settings->config('reply_order'))

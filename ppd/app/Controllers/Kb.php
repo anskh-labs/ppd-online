@@ -13,7 +13,25 @@ class Kb extends BaseController
             'body' => lang('Client.404.body')
         ]);
     }
-
+    
+    public function error403()
+    {
+        echo view('frontend/error',[
+            'locale' => $this->locale,
+            'title' => lang('Client.403.title'),
+            'body' => lang('Client.403.body')
+        ]);
+    }
+    
+    public function error500()
+    {
+        echo view('frontend/error',[
+            'locale' => $this->locale,
+            'title' => lang('Client.500.title'),
+            'body' => lang('Client.500.body')
+        ]);
+    }
+    
 	public function home()
 	{
 		return view('frontend/home',[
