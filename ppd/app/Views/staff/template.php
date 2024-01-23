@@ -241,7 +241,7 @@ $locale = isset($locale) ? $locale : \Config\Services::request()->getLocale();
                     ?>
                 </div>
                 <footer class="main-footer d-flex mt-3 p-2 px-3 bg-white border-top">
-                    <span class="copyright ml-auto my-auto mr-2">Copyright © <?php echo date('Y'); ?> BPS Kab. Kampar, powered by
+                    <span class="copyright ml-auto my-auto mr-2">Copyright © <?php echo date('Y'); ?> BPS Kab. XXX, powered by
                         <a href="https://helpdeskz.com" rel="nofollow">HelpDeskZ v<?php echo PPD_VERSION; ?></a>
                     </span>
                 </footer>

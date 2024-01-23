@@ -115,18 +115,18 @@ $page_controller = isset($page_controller) ? $page_controller : '';
                         <div class="image mr-3"><img src="<?= base_url('assets/helpdeskz/images/logo/bps.png') ?>" alt="Logo BPS" height="40"></div>
                         <div class="text">
                             <h6 class="m-0 text-white">BADAN PUSAT STATISTIK</h6>
-                            <div class="m-0 text-white">KABUPATEN KAMPAR</div>
+                            <div class="m-0 text-white">KABUPATEN XXX</div>
                             <div></div>
                         </div>
                     </div>
                     <div class="row mb-1">
-                        <div class="col"><a href="https://www.facebook.com/kabupaten.bpskampar.3" target="_blank"><i class="fab fa-facebook-f"></i><span class="pl-1">Bps Kabupaten Kampar</span></a></div>
+                        <div class="col"><a href="https://www.facebook.com/kabupaten.bpsxxx" target="_blank"><i class="fab fa-facebook-f"></i><span class="pl-1">Bps Kabupaten XXX</span></a></div>
                     </div>
                     <div class="row mb-1">
-                        <div class="col"><a href="https://www.instagram.com/bps_kampar/" target="_blank"><i class="fab fa-instagram"></i><span class="pl-1">bps_kampar</span></a></div>
+                        <div class="col"><a href="https://www.instagram.com/bps_xxx/" target="_blank"><i class="fab fa-instagram"></i><span class="pl-1">bps_xxx</span></a></div>
                     </div>
                     <div class="row mb-3">
-                        <div class="col"><a href="https://kamparkab.bps.go.id" target="_blank"><i class="fab fa-chrome"></i><span class="pl-1">kamparkab.bps.go.id</span></a></div>
+                        <div class="col"><a href="https://xxx.bps.go.id" target="_blank"><i class="fab fa-chrome"></i><span class="pl-1">xxx.bps.go.id</span></a></div>
                     </div>
                 </div>
                 <div class="col-lg-4">
@@ -144,7 +144,7 @@ $page_controller = isset($page_controller) ? $page_controller : '';
                     </div>
                     <div class="row mb-3">
                         <div class="col-auto pr-0"><i class="fa fa-map-marked"></i></div>
-                        <div class="col"><a href="https://maps.google.com/?q=82P9%2B39" target="_blank">82P9+39 Langgini, Kabupaten Kampar, Riau</a></div>
+                        <div class="col"><a href="" target="_blank">Kabupaten XXX</a></div>
                     </div>
                 </div>
                 <div class="col-lg-4">
@@ -232,13 +232,13 @@ $page_controller = isset($page_controller) ? $page_controller : '';
                     <ol type="A">
                         <li>Layanan <i>Offline</i>
                             <ol type="1" class="ml-3">
-                                <li>Pengguna layanan datang langsung ke Unit Pelayanan Statistik Terpadu (PST) BPS Kab. Kampar</li>
+                                <li>Pengguna layanan datang langsung ke Unit Pelayanan Statistik Terpadu (PST) BPS Kab. XXX</li>
                                 <li>Pengguna layanan mengisi bukutamu</li>
                             </ol>
                         </li>
                         <li>Layanan <i>Online</i>
                             <ol type="1" class="ml-3">
-                                <li>Pengguna layanan mengunjungi layanan secara <i>online</i> dengan alamat https://kampar.web.bps.go.id/ppd-online/</li>
+                                <li>Pengguna layanan mengunjungi layanan secara <i>online</i> dengan alamat https://xxx.web.bps.go.id/ppd-online/</li>
                                 <li>Pengguna layanan memiliki nomor HP dan alamat email</li>
                                 <li>Pengguna layanan mengisi bukutamu elektronik</li>
                             </ol>
@@ -248,7 +248,7 @@ $page_controller = isset($page_controller) ? $page_controller : '';
                     <ol type="A">
                         <li>Layanan <i>Offline</i>
                             <ol type="1" class="ml-3">
-                                <li>Pengguna layanan datang langsung ke Unit Pelayanan Statistik Terpadu (PST) BPS Kab. Kampar</li>
+                                <li>Pengguna layanan datang langsung ke Unit Pelayanan Statistik Terpadu (PST) BPS Kab. XXX</li>
                                 <li>Pengguna layanan menemui petugas PST</li>
                                 <li>Pengguna layanan mengisi bukutamu</li>
                                 <li>Pengguna layanan menjelaskan data yang dibutuhkan</li>
@@ -258,7 +258,7 @@ $page_controller = isset($page_controller) ? $page_controller : '';
                         </li>
                         <li>Layanan <i>Online</i>
                             <ol type="1" class="ml-3">
-                                <li>Pengguna layanan mengunjungi layanan secara <i>online</i> dengan alamat https://kampar.web.bps.go.id/ppd-online/</li>
+                                <li>Pengguna layanan mengunjungi layanan secara <i>online</i> dengan alamat https://xxx.web.bps.go.id/ppd-online/</li>
                                 <li>Pengguna layanan mengisi bukutamu</li>
                                 <li>Pengguna layanan membuat tiket permintaan data</li>
                                 <li>Petugas memproses permintaan data</li>

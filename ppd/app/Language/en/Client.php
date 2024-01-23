@@ -6,7 +6,7 @@ return [
         'title' => 'Knowledge Base',
         'menu' => 'Knowledge base',
         'howCanWeHelpYou1' => 'Welcome To PPD Online ',
-        'howCanWeHelpYou2' => 'BPS Kabupaten Kampar',
+        'howCanWeHelpYou2' => 'BPS Kabupaten XXX',
         'search' => 'Search in knowledge base',
         'moreTopics' => 'More Topics',
         'mostPopular' => 'Most popular articles',
@@ -20,7 +20,7 @@ return [
         'title' => 'Sign in to %site_name%',
         'button' => 'Sign In',
         'guestBook' => 'Guest Book for New Users',
-        'guestBookDesc' => 'Please fill in this guest book forms for registration to PPD Online BPS-Statistics of Kampar Regency.',
+        'guestBookDesc' => 'Please fill in this guest book forms for registration to PPD Online BPS-Statistics of XXX Regency.',
         'passwordSent' => 'We have sent an email with a new password to the address provided',
         'agent1' => 'I\'m an Agent',
         'agent2' => 'Login Here',
@@ -93,7 +93,7 @@ return [
         'next' => 'Next',
         'phone' => 'Phone Number',
         'location' => 'Location',
-        'kampar'=>'Kampar Regency',
+        'wilayah'=>'In Regency',
         'other' => 'Other',
         'message' => 'Description',
         'captcha' => 'Security code'
@@ -148,10 +148,10 @@ return [
     ],
     'site' => [
         'hello' => 'Welcome to PPD-Online',
-        'description' => 'PPD-Online is integrated data request provided by Statistics of Kampar Regency. 
+        'description' => 'PPD-Online is integrated data request provided by Statistics of XXX Regency. 
         Select %newUser% button if data user has never entered this application before, select
         %registeredUser% if ever.
         ',
-        'company' => 'Statistics of Kampar Regency'
+        'company' => 'Statistics of XXX Regency'
     ]
 ];

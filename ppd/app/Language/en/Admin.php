@@ -332,7 +332,7 @@ return [
         'category' => 'Category',
         'topicName' => 'Topic name',
         'location' => 'Location',
-        'kampar'=>'Kampar Regency',
+        'wilayah'=>'In Regency',
         'other' => 'Other',
         'date' => 'Calendar date',
         'role' =>'Role'
