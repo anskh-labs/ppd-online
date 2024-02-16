@@ -20,6 +20,7 @@ $routes->setDefaultController('Home');
 $routes->setDefaultMethod('index');
 $routes->setTranslateURIDashes(false);
 $routes->setAutoRoute(true);
+$routes->useSupportedLocalesOnly(true);
 
 /**
  * --------------------------------------------------------------------

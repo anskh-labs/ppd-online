@@ -382,7 +382,7 @@ CREATE TABLE `ppd_staff` (
 --
 
 INSERT INTO `ppd_staff` (`id`, `username`, `password`, `fullname`, `email`, `token`, `registration`, `login`, `last_login`, `avatar`, `role`, `active`) VALUES
-(1, 'admin', '$2y$10$n1YJxnEkCtbagZT86ohm0ehw/lI2VZVLmeiuEHvlMq8LNNAM8Z1cO', 'Admin PPD-Online', 'pst1406@bps.go.id', '829851409a18fe963da4a00ac5dbd5e434399466', 1621221210, 1703215422, 1703214812, NULL, 1, 1);
+(1, 'admin', '$2y$10$rQ9nxGjErsCATJtm1Xfa..ZE3TEBneRTytLxkOQfB0b0YFrVfFzaK', 'Admin PPD-Online', 'pst1406@bps.go.id', '829851409a18fe963da4a00ac5dbd5e434399466', 1621221210, 1703215422, 1703214812, NULL, 1, 1);
 
 -- --------------------------------------------------------
 
